@@ -1,4 +1,4 @@
-C:/Users/ASUS/Desktop/MateriSem3/PSD/PA02-FinalProject-PSD/hillCipher.vhd {1 {vcom -work work -2002 -explicit -stats=none {C:\Users\ASUS\Desktop\MateriSem3\PSD\PA02-FinalProject-PSD\hillCipher.vhd}
+C:/Users/ASUS/Desktop/MateriSem3/PSD/PA02-FinalProject-PSD/hillCipher.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/ASUS/Desktop/MateriSem3/PSD/PA02-FinalProject-PSD/hillCipher.vhd
 Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
 -- Loading package STANDARD
 -- Loading package TEXTIO
@@ -7,24 +7,54 @@ Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 
 -- Compiling entity hillCipher
 -- Compiling architecture Behavioral of hillCipher
 
-} {} {}} C:/Users/ASUS/Desktop/MateriSem3/PSD/PA02-FinalProject-PSD/Main.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/ASUS/Desktop/MateriSem3/PSD/PA02-FinalProject-PSD/Main.vhd
+} {} {}} C:/Users/ASUS/Desktop/MateriSem3/PSD/PA02-FinalProject-PSD/Main.vhd {0 {vcom -work work -2002 -explicit -stats=none C:/Users/ASUS/Desktop/MateriSem3/PSD/PA02-FinalProject-PSD/Main.vhd
 Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
 -- Loading package STANDARD
 -- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Loading package NUMERIC_STD
 -- Compiling entity Main
--- Compiling architecture Structural of Main
+-- Compiling architecture Behavioral of Main
+** Error: C:/Users/ASUS/Desktop/MateriSem3/PSD/PA02-FinalProject-PSD/Main.vhd(91): (vcom-1600) No feasible entries for subprogram "READLINE".
+   Visible subprograms are:
+      (explicit) TEXTIO.READLINE[std.TEXTIO.TEXT, std.TEXTIO.LINE] at $MODEL_TECH/../vhdl_src/std/textio.vhd(62)
+** Error: C:/Users/ASUS/Desktop/MateriSem3/PSD/PA02-FinalProject-PSD/Main.vhd(104): (vcom-1600) No feasible entries for subprogram "WRITELINE".
+   Visible subprograms are:
+      (explicit) TEXTIO.WRITELINE[std.TEXTIO.TEXT, std.TEXTIO.LINE] at $MODEL_TECH/../vhdl_src/std/textio.vhd(119)
+** Error: C:/Users/ASUS/Desktop/MateriSem3/PSD/PA02-FinalProject-PSD/Main.vhd(106): Illegal expanded name prefix ("caesar_inst" is not label of block, process, generate, or (for) loop statement).
+** Error (suppressible): C:/Users/ASUS/Desktop/MateriSem3/PSD/PA02-FinalProject-PSD/Main.vhd(106): (vcom-1195) Cannot find expanded name "caesar_inst.input".
+** Error: C:/Users/ASUS/Desktop/MateriSem3/PSD/PA02-FinalProject-PSD/Main.vhd(106): Illegal target for signal assignment.
+** Error: C:/Users/ASUS/Desktop/MateriSem3/PSD/PA02-FinalProject-PSD/Main.vhd(106): Unknown expanded name.
+** Error: C:/Users/ASUS/Desktop/MateriSem3/PSD/PA02-FinalProject-PSD/Main.vhd(111): Illegal expanded name prefix ("hill_inst" is not label of block, process, generate, or (for) loop statement).
+** Error (suppressible): C:/Users/ASUS/Desktop/MateriSem3/PSD/PA02-FinalProject-PSD/Main.vhd(111): (vcom-1195) Cannot find expanded name "hill_inst.input".
+** Error: C:/Users/ASUS/Desktop/MateriSem3/PSD/PA02-FinalProject-PSD/Main.vhd(111): Illegal target for signal assignment.
+** Error: C:/Users/ASUS/Desktop/MateriSem3/PSD/PA02-FinalProject-PSD/Main.vhd(111): Unknown expanded name.
+** Error: C:/Users/ASUS/Desktop/MateriSem3/PSD/PA02-FinalProject-PSD/Main.vhd(113): Illegal expanded name prefix ("hill_inst" is not label of block, process, generate, or (for) loop statement).
+** Error (suppressible): C:/Users/ASUS/Desktop/MateriSem3/PSD/PA02-FinalProject-PSD/Main.vhd(113): (vcom-1195) Cannot find expanded name "hill_inst.input".
+** Error: C:/Users/ASUS/Desktop/MateriSem3/PSD/PA02-FinalProject-PSD/Main.vhd(113): Illegal target for signal assignment.
+** Error: C:/Users/ASUS/Desktop/MateriSem3/PSD/PA02-FinalProject-PSD/Main.vhd(113): Unknown expanded name.
+** Error: C:/Users/ASUS/Desktop/MateriSem3/PSD/PA02-FinalProject-PSD/Main.vhd(118): (vcom-1600) No feasible entries for subprogram "WRITELINE".
+   Visible subprograms are:
+      (explicit) TEXTIO.WRITELINE[std.TEXTIO.TEXT, std.TEXTIO.LINE] at $MODEL_TECH/../vhdl_src/std/textio.vhd(119)
+** Error: C:/Users/ASUS/Desktop/MateriSem3/PSD/PA02-FinalProject-PSD/Main.vhd(120): (vcom-1600) No feasible entries for subprogram "WRITELINE".
+   Visible subprograms are:
+      (explicit) TEXTIO.WRITELINE[std.TEXTIO.TEXT, std.TEXTIO.LINE] at $MODEL_TECH/../vhdl_src/std/textio.vhd(119)
+** Error: C:/Users/ASUS/Desktop/MateriSem3/PSD/PA02-FinalProject-PSD/Main.vhd(127): (vcom-1600) No feasible entries for subprogram "WRITELINE".
+   Visible subprograms are:
+      (explicit) TEXTIO.WRITELINE[std.TEXTIO.TEXT, std.TEXTIO.LINE] at $MODEL_TECH/../vhdl_src/std/textio.vhd(119)
+** Error: C:/Users/ASUS/Desktop/MateriSem3/PSD/PA02-FinalProject-PSD/Main.vhd(129): (vcom-1600) No feasible entries for subprogram "WRITELINE".
+   Visible subprograms are:
+      (explicit) TEXTIO.WRITELINE[std.TEXTIO.TEXT, std.TEXTIO.LINE] at $MODEL_TECH/../vhdl_src/std/textio.vhd(119)
+** Note: C:/Users/ASUS/Desktop/MateriSem3/PSD/PA02-FinalProject-PSD/Main.vhd(146): VHDL Compiler exiting
 
-} {} {}} C:/Users/ASUS/Desktop/MateriSem3/PSD/PA02-FinalProject-PSD/caesarCipher.vhd {1 {vcom -work work -2002 -explicit -stats=none {C:\Users\ASUS\Desktop\MateriSem3\PSD\PA02-FinalProject-PSD\caesarCipher.vhd}
+} {9.0 10.0 12.0 13.0 15.0 16.0 17.0 20.0 21.0 24.0 25.0 28.0 30.0 31.0 33.0 34.0 36.0 37.0} {}} C:/Users/ASUS/Desktop/MateriSem3/PSD/PA02-FinalProject-PSD/caesarCipher.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/ASUS/Desktop/MateriSem3/PSD/PA02-FinalProject-PSD/caesarCipher.vhd
 Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
 -- Loading package STANDARD
 -- Loading package TEXTIO
 -- Loading package std_logic_1164
--- Loading package std_logic_arith
--- Loading package STD_LOGIC_UNSIGNED
--- Compiling entity caesarChiper
--- Compiling architecture Dataflow of caesarChiper
+-- Loading package NUMERIC_STD
+-- Compiling entity caesarCipher
+-- Compiling architecture Behavioral of caesarCipher
 
 } {} {}} C:/Users/ASUS/Desktop/MateriSem3/PSD/PA02-FinalProject-PSD/MainTB.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/ASUS/Desktop/MateriSem3/PSD/PA02-FinalProject-PSD/MainTB.vhd
 Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020

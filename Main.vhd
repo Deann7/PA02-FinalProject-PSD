@@ -7,29 +7,31 @@ entity Main is
     Port (
         clk         : in STD_LOGIC;
         rst         : in STD_LOGIC;
-        mode        : in STD_LOGIC;  -- 0: Encrypt, 1: Decrypt
+        mode        : in STD_LOGIC;
         start       : in STD_LOGIC;
-        done        : out STD_LOGIC;
-        error       : out STD_LOGIC
+        done_out    : out STD_LOGIC;
+        error_out   : out STD_LOGIC
     );
 end Main;
 
-architecture Structural of Main is
+architecture Behavioral of Main is
     type state_type is (
         IDLE, 
-        INIT, 
         READ_INPUT, 
-        PROCESS_CHAR, 
+        CAESAR_PROCESS, 
+        HILL_PROCESS, 
         WRITE_OUTPUT, 
         COMPLETE, 
         ERROR_STATE
     );
     
-    component caesarChiper is
+    signal current_state : state_type := IDLE;
+    signal next_state : state_type := IDLE;
+
+    component caesarCipher is
         port (
-            input       : in  std_logic_vector(7 downto 0);
-            shift_char  : in  integer range 0 to 25;
-            cipher      : out std_logic_vector(7 downto 0)
+            input   : in  std_logic_vector(7 downto 0);
+            cipher  : out std_logic_vector(7 downto 0)
         );
     end component;
 
@@ -41,82 +43,106 @@ architecture Structural of Main is
         );
     end component;
 
-    signal current_state, next_state : state_type;
-    signal input_text, processed_text : std_logic_vector(7 downto 0);
+    signal input_char : std_logic_vector(7 downto 0);
     signal caesar_out, hill_out : std_logic_vector(7 downto 0);
-    
-    signal shift_value  : integer range 0 to 25 := 3;
     signal processing_mode : std_logic;
-
-    -- Explicit file handling signals
-    signal file_read_done : boolean := false;
-    signal file_write_done : boolean := false;
+    signal done : std_logic := '0';
+    signal error : std_logic := '0';
 
 begin
-    caesar_inst : caesarChiper port map (
-        input => input_text,
-        shift_char => shift_value,
+    caesar_inst : caesarCipher port map (
+        input => input_char,
         cipher => caesar_out
     );
 
     hill_inst : hillCipher port map (
-        input => input_text,
+        input => input_char,
         mode => processing_mode,
         output => hill_out
     );
 
-    file_process: process(clk, rst)
-        file input_file  : text open read_mode is "input.txt";
-        file output_file : text open write_mode is "output.txt";
-        variable input_line  : line;
-        variable output_line : line;
-        variable char_var    : character;
-        variable temp_processed : std_logic_vector(7 downto 0);
-    begin
-        if rst = '1' then
-            file_read_done <= false;
-            file_write_done <= false;
-        elsif rising_edge(clk) then
-            if not file_read_done then
-                if not endfile(input_file) then
-                    readline(input_file, input_line);
-                    read(input_line, char_var);
-                    input_text <= std_logic_vector(to_unsigned(character'pos(char_var), 8));
-
-                    -- Process based on mode
-                    if processing_mode = '0' then  -- Encryption
-                        input_text <= caesar_out;
-                        temp_processed := hill_out;
-                    else  -- Decryption
-                        input_text <= hill_out;
-                        temp_processed := caesar_out;
-                    end if;
-
-                    -- Write processed character
-                    write(output_line, character'val(to_integer(unsigned(temp_processed))));
-                    writeline(output_file, output_line);
-                else
-                    file_read_done <= true;
-                    file_write_done <= true;
-                end if;
-            end if;
-        end if;
-    end process;
+    done_out <= done;
+    error_out <= error;
 
     state_machine: process(clk, rst)
+        file input_file  : text open read_mode is "input.txt";
+        file output_file : text open write_mode is "phase1.txt";
+        file encrypt_file : text open write_mode is "encryptOutput.txt";
+        file decrypt_file : text open write_mode is "decryptOutput.txt";
+
+        variable line_in : line;
+        variable line_out : line;
+        variable input_char_var : character;
     begin
         if rst = '1' then
             current_state <= IDLE;
-            processing_mode <= '0';
             done <= '0';
             error <= '0';
+            processing_mode <= '0';
         elsif rising_edge(clk) then
-            if start = '1' then
-                processing_mode <= mode;
-                if file_write_done then
+            case current_state is
+                when IDLE =>
+                    if start = '1' then
+                        processing_mode <= mode;
+                        current_state <= READ_INPUT;
+                        done <= '0';
+                        error <= '0';
+                    end if;
+
+                when READ_INPUT =>
+                    if not endfile(input_file) then
+                        readline(input_file, line_in);
+                        read(line_in, input_char_var);
+                        input_char <= std_logic_vector(to_unsigned(character'pos(input_char_var), 8));
+                        current_state <= CAESAR_PROCESS;
+                    else
+                        current_state <= COMPLETE;
+                    end if;
+
+                when CAESAR_PROCESS =>
+                    write(line_out, string'("Mode: "));
+                    if mode = '0' then
+                        write(line_out, string'("Encrypt"));
+                    else
+                        write(line_out, string'("Decrypt"));
+                    end if;
+                    writeline(output_file, line_out);
+                    
+                    current_state <= HILL_PROCESS;
+
+                when HILL_PROCESS =>
+                    if mode = '0' then
+                        input_char <= caesar_out;
+                    else
+                        input_char <= caesar_out;
+                    end if;
+
+                    write(line_out, string'("Ciphered text: "));
+                    write(line_out, character'val(to_integer(unsigned(caesar_out))));
+                    writeline(output_file, line_out);
+                    
+                    if mode = '0' then
+                        writeline(encrypt_file, line_out);
+                    else
+                        writeline(decrypt_file, line_out);
+                    end if;
+
+                    current_state <= WRITE_OUTPUT;
+
+                when WRITE_OUTPUT =>
+                    current_state <= COMPLETE;
+
+                when COMPLETE =>
                     done <= '1';
-                end if;
-            end if;
+                    current_state <= IDLE;
+
+                when ERROR_STATE =>
+                    error <= '1';
+                    current_state <= IDLE;
+
+                when others =>
+                    current_state <= ERROR_STATE;
+            end case;
         end if;
-    end process;
-end Structural;
+    end process state_machine;
+end Behavioral;

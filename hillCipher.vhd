@@ -3,53 +3,50 @@ use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
 
 entity hillCipher is
-    Port (
-        input : in STD_LOGIC_VECTOR(7 downto 0);
-        mode  : in STD_LOGIC;  -- 0 for encryption, 1 for decryption
+    port (
+        input  : in STD_LOGIC_VECTOR(7 downto 0);
+        mode   : in STD_LOGIC;  -- 0 for forward process, 1 for reverse
         output : out STD_LOGIC_VECTOR(7 downto 0)
     );
-end hillCipher;
+end entity hillCipher;
 
 architecture Behavioral of hillCipher is
-    -- 2x2 Hill Cipher Key Matrix
-    type matrix is array (0 to 1, 0 to 1) of integer range 0 to 25;
-    constant key : matrix := ((3, 2), (5, 7));
-    constant det_inv : integer := 15;  -- Modular multiplicative inverse of determinant
+    -- Matriks kunci 2x2 untuk Hill Cipher
+    type matrix_2x2 is array(0 to 1, 0 to 1) of integer;
+    constant KEY_MATRIX : matrix_2x2 := ((3, 2), (2, 5));
+    constant DET_KEY : integer := 3 * 5 - 2 * 2;
+    constant DET_INV : integer := 17;  -- Inverse dari determinan
 
-    -- Function now takes mode as a parameter
-    function matrixMultiply(
-        char : integer; 
-        processing_mode : STD_LOGIC
-    ) return integer is
-        variable result : integer range 0 to 25;
-        variable vec : matrix;
+    function mod26(x : integer) return integer is
     begin
-        -- Convert character to 2D vector
-        vec(0,0) := char;
-        vec(0,1) := 0;
-
-        if processing_mode = '0' then  -- Encryption
-            result := (key(0,0) * vec(0,0) + key(0,1) * vec(0,1)) mod 26;
-        else  -- Decryption
-            result := (det_inv * ((7 * vec(0,0) - 2 * vec(0,1)) mod 26)) mod 26;
-        end if;
-
-        return result;
+        return ((x mod 26 + 26) mod 26);
     end function;
 
 begin
     process(input, mode)
-        variable temp : integer range 0 to 255;
+        variable char_value : integer range 0 to 255;
+        variable transformed_1 : integer;
     begin
-        temp := to_integer(unsigned(input));
+        char_value := to_integer(unsigned(input));
 
-        -- Only process alphabetic characters
-        if (temp >= 65 and temp <= 90) then  -- Uppercase
-            temp := matrixMultiply(temp - 65, mode) + 65;
-        elsif (temp >= 97 and temp <= 122) then  -- Lowercase
-            temp := matrixMultiply(temp - 97, mode) + 97;
+        if char_value >= 65 and char_value <= 90 then
+            if mode = '0' then  -- Forward process (Encrypt)
+                transformed_1 := mod26(KEY_MATRIX(0,0) * (char_value - 65) + KEY_MATRIX(0,1) * (char_value - 65));
+                output <= std_logic_vector(to_unsigned(transformed_1 + 65, 8));
+            else  -- Reverse process (Decrypt)
+                transformed_1 := mod26(DET_INV * (KEY_MATRIX(1,1) * (char_value - 65) - KEY_MATRIX(0,1) * (char_value - 65)));
+                output <= std_logic_vector(to_unsigned(transformed_1 + 65, 8));
+            end if;
+        elsif char_value >= 97 and char_value <= 122 then
+            if mode = '0' then  -- Forward process (Encrypt)
+                transformed_1 := mod26(KEY_MATRIX(0,0) * (char_value - 97) + KEY_MATRIX(0,1) * (char_value - 97));
+                output <= std_logic_vector(to_unsigned(transformed_1 + 97, 8));
+            else  -- Reverse process (Decrypt)
+                transformed_1 := mod26(DET_INV * (KEY_MATRIX(1,1) * (char_value - 97) - KEY_MATRIX(0,1) * (char_value - 97)));
+                output <= std_logic_vector(to_unsigned(transformed_1 + 97, 8));
+            end if;
+        else
+            output <= input;
         end if;
-
-        output <= std_logic_vector(to_unsigned(temp, 8));
     end process;
-end Behavioral;
+end architecture Behavioral;

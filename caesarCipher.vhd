@@ -1,36 +1,28 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
-use IEEE.STD_LOGIC_ARITH.ALL;
-use IEEE.STD_LOGIC_UNSIGNED.ALL;
+use IEEE.NUMERIC_STD.ALL;
 
-entity caesarChiper is
+entity caesarCipher is
     port (
         input       : in  std_logic_vector(7 downto 0);
-        shift_char  : in  integer range 0 to 25;
         cipher      : out std_logic_vector(7 downto 0)
     );
-end entity caesarChiper;
+end entity caesarCipher;
 
-architecture Dataflow of caesarChiper is
+architecture Behavioral of caesarCipher is
+    constant SHIFT_VALUE : integer := 3;
 begin
-
-    process(input, shift_char)
+    process(input)
         variable temp : integer;
     begin
-        temp := conv_integer(input); 
+        temp := to_integer(unsigned(input)); 
 
-        -- Huruf Kapital (A-Z)
         if (temp >= 65 and temp <= 90) then
-            temp := ((temp - 65 + shift_char) mod 26) + 65;
-        -- Huruf Kecil (a-z)
+            temp := ((temp - 65 + SHIFT_VALUE) mod 26) + 65;
         elsif (temp >= 97 and temp <= 122) then
-            temp := ((temp - 97 + shift_char) mod 26) + 97;
+            temp := ((temp - 97 + SHIFT_VALUE) mod 26) + 97;
         end if;
 
-        -- Konversi integer kembali ke std_logic_vector
-        cipher <= conv_std_logic_vector(temp, 8);
-        
-
-
+        cipher <= std_logic_vector(to_unsigned(temp, 8));
     end process;
-end architecture Dataflow;
+end architecture Behavioral;
