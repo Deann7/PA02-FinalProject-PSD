@@ -1,2 +1,0 @@
-Mode: Encrypt
-Ciphered text: K
