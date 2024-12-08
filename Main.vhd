@@ -119,13 +119,23 @@ begin
 
                 when CAESAR_PROCESS =>
                     -- Proses Caesar Cipher di mode enkripsi
-                    input_char <= caesar_out;
-                    current_state <= HILL_PROCESS; 
+                    if main_mode = '0' then
+                        input_char <= caesar_out;
+                        current_state <= HILL_PROCESS; 
+                    else
+                        input_char <= caesar_out;
+                        current_state <= WRITE_OUTPUT;
+                    end if; 
 
                 when HILL_PROCESS =>
                     -- Proses Hill Cipher di mode enkripsi
-                    input_char <= hill_out;
-                    current_state <= WRITE_OUTPUT;
+                    if main_mode = '0' then
+                        input_char <= hill_out;
+                        current_state <= WRITE_OUTPUT;
+                    else
+                        input_char <= hill_out;
+                        current_state <= CAESAR_PROCESS;
+                    end if;
 
                 when WRITE_OUTPUT =>
                     write(line_out, character'val(to_integer(unsigned(input_char))));  -- Menulis ke file

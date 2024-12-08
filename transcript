@@ -847,3 +847,117 @@ run
 run
 run
 run
+# Compile of Main.vhd failed with 5 errors.
+# Compile of caesarCipher.vhd was successful.
+# Compile of hillCipher.vhd was successful.
+# Compile of Main.vhd was successful.
+# Compile of MainTB.vhd was successful.
+# 4 compiles, 0 failed with no errors.
+vsim -gui work.main
+# End time: 11:18:47 on Dec 08,2024, Elapsed time: 0:51:28
+# Errors: 0, Warnings: 6
+# vsim -gui work.main 
+# Start time: 11:18:47 on Dec 08,2024
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.main(behavioral)
+# Loading work.hillcipher(behavioral)
+# Loading work.caesarcipher(behavioral)
+add wave -position insertpoint sim:/main/*
+force -freeze sim:/main/clk 1 0, 0 {50 ps} -r 100
+force -freeze sim:/main/rst 0 0
+force -freeze sim:/main/mode 0 0
+force -freeze sim:/main/start 1 0
+run
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /main/caesar_inst
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /main/hill_inst
+run
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 200 ps  Iteration: 1  Instance: /main/hill_inst
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+force -freeze sim:/main/mode 1 0
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+force -freeze sim:/main/mode 0 0
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+force -freeze sim:/main/mode 1 0
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
