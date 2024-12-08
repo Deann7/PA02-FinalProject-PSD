@@ -1,0 +1,849 @@
+# Compile of caesarCipher.vhd was successful.
+# Compile of hillCipher.vhd was successful.
+# Compile of Main.vhd was successful.
+# Compile of MainTB.vhd was successful.
+# 4 compiles, 0 failed with no errors.
+vsim -gui work.main
+# vsim -gui work.main 
+# Start time: 06:17:33 on Dec 08,2024
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.main(behavioral)
+# Loading work.caesarcipher(behavioral)
+# Loading work.hillcipher(behavioral)
+add wave -position insertpoint sim:/main/*
+force -freeze sim:/main/clk 1 0, 0 {50 ps} -r 100
+force -freeze sim:/main/rst 0 0
+force -freeze sim:/main/mode 1 0
+force -freeze sim:/main/start 1 0
+run
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /main/hill_inst
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /main/caesar_inst
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 100 ps  Iteration: 1  Instance: /main/hill_inst
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+# Compile of caesarCipher.vhd was successful.
+# Compile of hillCipher.vhd was successful.
+# Compile of Main.vhd was successful.
+# Compile of MainTB.vhd was successful.
+# 4 compiles, 0 failed with no errors.
+vsim -gui work.main
+# End time: 06:27:41 on Dec 08,2024, Elapsed time: 0:10:08
+# Errors: 0, Warnings: 9
+# vsim -gui work.main 
+# Start time: 06:27:41 on Dec 08,2024
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.main(behavioral)
+# Loading work.caesarcipher(behavioral)
+# Loading work.hillcipher(behavioral)
+add wave -position insertpoint sim:/main/*
+force -freeze sim:/main/clk 1 0, 0 {50 ps} -r 100
+force -freeze sim:/main/rst 0 0
+force -freeze sim:/main/mode 1 0
+force -freeze sim:/main/start 1 0
+run
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /main/hill_inst
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /main/caesar_inst
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+# Compile of Main.vhd was successful.
+vsim -gui work.main
+# End time: 06:35:09 on Dec 08,2024, Elapsed time: 0:07:28
+# Errors: 0, Warnings: 4
+# vsim -gui work.main 
+# Start time: 06:35:09 on Dec 08,2024
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.main(behavioral)
+# Loading work.caesarcipher(behavioral)
+# Loading work.hillcipher(behavioral)
+add wave -position insertpoint sim:/main/*
+force -freeze sim:/main/clk 1 0, 0 {50 ps} -r 100
+force -freeze sim:/main/rst 0 0
+force -freeze sim:/main/mode 0 0
+force -freeze sim:/main/start 1 0
+run
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /main/hill_inst
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /main/caesar_inst
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 100 ps  Iteration: 1  Instance: /main/hill_inst
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+# Compile of MainTB.vhd failed with 5 errors.
+# Load canceled
+vsim -gui work.maintb
+# End time: 06:46:26 on Dec 08,2024, Elapsed time: 0:11:17
+# Errors: 0, Warnings: 5
+# vsim -gui work.maintb 
+# Start time: 06:46:26 on Dec 08,2024
+# Loading std.standard
+# ** Error: (vsim-3173) Entity 'D:/ima/SEM 3 BISMILLAH/psd babi/PA02-FinalProject-PSD/work.maintb' has no architecture.
+# Error loading design
+# End time: 06:46:26 on Dec 08,2024, Elapsed time: 0:00:00
+# Errors: 1, Warnings: 1
+# Compile of MainTB.vhd failed with 4 errors.
+# Compile of MainTB.vhd failed with 1 errors.
+# Compile of MainTB.vhd failed with 1 errors.
+# Compile of MainTB.vhd failed with 1 errors.
+# Compile of MainTB.vhd failed with 4 errors.
+# Compile of MainTB.vhd failed with 4 errors.
+# Compile of MainTB.vhd was successful.
+vsim -gui work.main_tb
+# vsim -gui work.main_tb 
+# Start time: 06:58:14 on Dec 08,2024
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.main_tb(behavioral)
+# Loading work.main(behavioral)
+# ** Error: (vsim-3732) No default binding for component instance 'uut'.
+#    The following component ports are not on the entity:
+#           error
+#           done
+#    Time: 0 ps  Iteration: 0  Instance: /main_tb/uut File: D:/ima/SEM 3 BISMILLAH/psd babi/PA02-FinalProject-PSD/MainTB.vhd Line: 75
+# Loading work.caesarcipher(behavioral)
+# Loading work.hillcipher(behavioral)
+# Error loading design
+# End time: 06:58:15 on Dec 08,2024, Elapsed time: 0:00:01
+# Errors: 1, Warnings: 8
+# Compile of MainTB.vhd was successful.
+# Load canceled
+vsim -gui work.maintb
+# vsim -gui work.maintb 
+# Start time: 07:05:04 on Dec 08,2024
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.maintb(behavior)
+# Loading work.main(behavioral)
+# Loading work.caesarcipher(behavioral)
+# Loading work.hillcipher(behavioral)
+add wave -position insertpoint sim:/maintb/*
+run -all
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /maintb/uut/hill_inst
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /maintb/uut/caesar_inst
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 1  Instance: /maintb/uut/hill_inst
+# ** Fatal: (vsim-3341) Cannot open file "input.txt"; it is already open.
+#    Time: 40 ns  Iteration: 0  Process: /maintb/stimulus File: D:/ima/SEM 3 BISMILLAH/psd babi/PA02-FinalProject-PSD/MainTB.vhd
+# Fatal error in Process stimulus at D:/ima/SEM 3 BISMILLAH/psd babi/PA02-FinalProject-PSD/MainTB.vhd line 75
+# 
+# HDL call sequence:
+# Stopped at D:/ima/SEM 3 BISMILLAH/psd babi/PA02-FinalProject-PSD/MainTB.vhd 75 Process stimulus
+# 
+# Compile of MainTB.vhd was successful.
+# Load canceled
+# Compile of MainTB.vhd was successful.
+vsim -gui work.maintb
+# End time: 07:09:28 on Dec 08,2024, Elapsed time: 0:04:24
+# Errors: 1, Warnings: 7
+# vsim -gui work.maintb 
+# Start time: 07:09:28 on Dec 08,2024
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.maintb(behavior)
+# Loading work.main(behavioral)
+# Loading work.caesarcipher(behavioral)
+# Loading work.hillcipher(behavioral)
+add wave -position insertpoint sim:/maintb/*
+run -all
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /maintb/uut/hill_inst
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /maintb/uut/caesar_inst
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 1  Instance: /maintb/uut/hill_inst
+# ** Fatal: (vsim-3341) Cannot open file "input.txt"; it is already open.
+#    Time: 40 ns  Iteration: 0  Process: /maintb/stimulus File: D:/ima/SEM 3 BISMILLAH/psd babi/PA02-FinalProject-PSD/MainTB.vhd
+# Fatal error in Process stimulus at D:/ima/SEM 3 BISMILLAH/psd babi/PA02-FinalProject-PSD/MainTB.vhd line 72
+# 
+# HDL call sequence:
+# Stopped at D:/ima/SEM 3 BISMILLAH/psd babi/PA02-FinalProject-PSD/MainTB.vhd 72 Process stimulus
+# 
+# Compile of Main.vhd was successful.
+vsim -gui work.main
+# End time: 07:22:01 on Dec 08,2024, Elapsed time: 0:12:33
+# Errors: 1, Warnings: 5
+# vsim -gui work.main 
+# Start time: 07:22:02 on Dec 08,2024
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.main(behavioral)
+# Loading work.caesarcipher(behavioral)
+# Loading work.hillcipher(behavioral)
+add wave -position insertpoint sim:/main/*
+force -freeze sim:/main/clk 1 0, 0 {50 ps} -r 100
+force -freeze sim:/main/rst 0 0
+force -freeze sim:/main/mode 0 0
+force -freeze sim:/main/start 1 0
+run
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /main/hill_inst
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /main/caesar_inst
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 100 ps  Iteration: 1  Instance: /main/hill_inst
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+force -freeze sim:/main/rst 1 0
+force -freeze sim:/main/mode 1 0
+run
+run
+force -freeze sim:/main/rst 0 0
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+# Compile of Main.vhd failed with 1 errors.
+# Load canceled
+# Compile of caesarCipher.vhd was successful.
+# Compile of hillCipher.vhd was successful.
+# Compile of Main.vhd failed with 1 errors.
+# Compile of MainTB.vhd was successful.
+# 4 compiles, 1 failed with 1 error.
+# Compile of Main.vhd was successful.
+vsim -gui work.maintb
+# End time: 07:41:35 on Dec 08,2024, Elapsed time: 0:19:33
+# Errors: 0, Warnings: 7
+# vsim -gui work.maintb 
+# Start time: 07:41:35 on Dec 08,2024
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.maintb(behavioral)
+# Loading work.main(behavioral)
+# Loading work.caesarcipher(behavioral)
+# Loading work.hillcipher(behavioral)
+add wave -position insertpoint sim:/maintb/*
+run -all
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /maintb/uut/hill_inst
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /maintb/uut/caesar_inst
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 1  Instance: /maintb/uut/hill_inst
+# ** Failure: Karakter tidak cocok: input = H, decrypt = Z
+#    Time: 95 ns  Iteration: 3  Process: /maintb/verify_process File: D:/ima/SEM 3 BISMILLAH/psd babi/PA02-FinalProject-PSD/MainTB.vhd
+# Break in Process verify_process at D:/ima/SEM 3 BISMILLAH/psd babi/PA02-FinalProject-PSD/MainTB.vhd line 126
+run -all
+# ** Note: Verifikasi berhasil - Input dan Decrypt cocok
+#    Time: 95 ns  Iteration: 3  Instance: /maintb
+# Compile of MainTB.vhd was successful.
+vsim -gui work.main
+# End time: 07:55:30 on Dec 08,2024, Elapsed time: 0:13:55
+# Errors: 1, Warnings: 5
+# vsim -gui work.main 
+# Start time: 07:55:30 on Dec 08,2024
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.main(behavioral)
+# Loading work.caesarcipher(behavioral)
+# Loading work.hillcipher(behavioral)
+add wave -position insertpoint sim:/main/*
+force -freeze sim:/main/clk 1 0, 0 {50 ps} -r 100
+force -freeze sim:/main/rst 0 0
+force -freeze sim:/main/mode 0 0
+force -freeze sim:/main/start 1 0
+run
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /main/hill_inst
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /main/caesar_inst
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 100 ps  Iteration: 1  Instance: /main/hill_inst
+run
+run
+run
+run
+run
+run
+run
+force -freeze sim:/main/mode 1 0
+run
+run
+run
+run
+run
+run
+run
+run
+force -freeze sim:/main/mode 0 0
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+# Compile of Main.vhd was successful.
+vsim -gui work.main
+# End time: 08:43:00 on Dec 08,2024, Elapsed time: 0:47:30
+# Errors: 0, Warnings: 5
+# vsim -gui work.main 
+# Start time: 08:43:00 on Dec 08,2024
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.main(behavioral)
+# Loading work.caesarcipher(behavioral)
+# Loading work.hillcipher(behavioral)
+add wave -position insertpoint sim:/main/*
+force -freeze sim:/main/clk 1 0, 0 {50 ps} -r 100
+force -freeze sim:/main/rst 0 0
+force -freeze sim:/main/mode 0 0
+force -freeze sim:/main/start 1 0
+run
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /main/hill_inst
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /main/caesar_inst
+run
+run
+run
+run
+run
+run
+run
+run
+force -freeze sim:/main/mode 1 0
+run
+run
+run
+run
+run
+run
+run
+# Load canceled
+vsim -gui work.main
+# End time: 09:02:11 on Dec 08,2024, Elapsed time: 0:19:11
+# Errors: 0, Warnings: 3
+# vsim -gui work.main 
+# Start time: 09:02:11 on Dec 08,2024
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.main(behavioral)
+# Loading work.caesarcipher(behavioral)
+# Loading work.hillcipher(behavioral)
+add wave -position insertpoint sim:/main/*
+force -freeze sim:/main/clk 1 0, 0 {50 ps} -r 100
+force -freeze sim:/main/rst 0 0
+force -freeze sim:/main/mode 0 0
+force -freeze sim:/main/start 1 0
+run
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /main/hill_inst
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /main/caesar_inst
+run
+run
+run
+run
+run
+run
+run
+run
+force -freeze sim:/main/rst 1 0
+force -freeze sim:/main/start 0 0
+run
+run
+force -freeze sim:/main/rst 0 0
+force -freeze sim:/main/rst 0 0
+force -freeze sim:/main/start 1 0
+force -freeze sim:/main/mode 1 0
+run
+run
+run
+run
+run
+run
+run
+run
+# Compile of caesarCipher.vhd was successful.
+# Compile of hillCipher.vhd failed with 3 errors.
+# Compile of Main.vhd failed with 9 errors.
+# Compile of MainTB.vhd was successful.
+# 4 compiles, 2 failed with 12 errors.
+# Compile of caesarCipher.vhd was successful.
+# Compile of hillCipher.vhd failed with 3 errors.
+# Compile of Main.vhd failed with 9 errors.
+# Compile of MainTB.vhd was successful.
+# 4 compiles, 2 failed with 12 errors.
+# Compile of caesarCipher.vhd was successful.
+# Compile of hillCipher.vhd failed with 3 errors.
+# Compile of Main.vhd failed with 9 errors.
+# Compile of MainTB.vhd was successful.
+# 4 compiles, 2 failed with 12 errors.
+# Compile of caesarCipher.vhd was successful.
+# Compile of hillCipher.vhd was successful.
+# Compile of Main.vhd failed with 9 errors.
+# Compile of MainTB.vhd was successful.
+# 4 compiles, 1 failed with 9 errors.
+# Compile of caesarCipher.vhd was successful.
+# Compile of hillCipher.vhd was successful.
+# Compile of Main.vhd was successful.
+# Compile of MainTB.vhd was successful.
+# 4 compiles, 0 failed with no errors.
+vsim -gui work.main
+# End time: 10:27:19 on Dec 08,2024, Elapsed time: 1:25:08
+# Errors: 0, Warnings: 8
+# vsim -gui work.main 
+# Start time: 10:27:19 on Dec 08,2024
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.main(behavioral)
+# Loading work.hillcipher(behavioral)
+# Loading work.caesarcipher(behavioral)
+add wave -position insertpoint sim:/main/*
+force -freeze sim:/main/clk 1 0, 0 {50 ps} -r 100
+force -freeze sim:/main/rst 0 0
+force -freeze sim:/main/mode 0 0
+force -freeze sim:/main/start 1 0
+force -freeze sim:/main/clk 1 0, 0 {50 ps} -r 100
+run
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /main/caesar_inst
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /main/hill_inst
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+force -freeze sim:/main/clk 1 0, 0 {50 ps} -r 100
+force -freeze sim:/main/rst 0 0
+force -freeze sim:/main/mode 0 0
+force -freeze sim:/main/start 1 0
+run
+# GetModuleFileName: The specified module could not be found.
+# 
+# 
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /main/caesar_inst
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /main/hill_inst
+run
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 200 ps  Iteration: 1  Instance: /main/hill_inst
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+force -freeze sim:/main/rst 1 0
+force -freeze sim:/main/mode 1 0
+force -freeze sim:/main/start 0 0
+run
+run
+run
+force -freeze sim:/main/rst 0 0
+force -freeze sim:/main/mode 1 0
+force -freeze sim:/main/start 1 0
+run
+run
+# ** Fatal: (vsim-3341) Cannot open file "encryptOutput.txt"; it is already open.
+#    Time: 4600 ps  Iteration: 0  Process: /main/state_machine File: D:/ima/SEM 3 BISMILLAH/psd babi/PA02-FinalProject-PSD/Main.vhd
+# Fatal error in Process state_machine at D:/ima/SEM 3 BISMILLAH/psd babi/PA02-FinalProject-PSD/Main.vhd line 97
+# 
+# HDL call sequence:
+# Stopped at D:/ima/SEM 3 BISMILLAH/psd babi/PA02-FinalProject-PSD/Main.vhd 97 Process state_machine
+# 
+run
+# Cannot continue because of fatal error.
+# HDL call sequence:
+# Stopped at D:/ima/SEM 3 BISMILLAH/psd babi/PA02-FinalProject-PSD/Main.vhd 97 Process state_machine
+# 
+run
+# Cannot continue because of fatal error.
+# HDL call sequence:
+# Stopped at D:/ima/SEM 3 BISMILLAH/psd babi/PA02-FinalProject-PSD/Main.vhd 97 Process state_machine
+# 
+run
+# Cannot continue because of fatal error.
+# HDL call sequence:
+# Stopped at D:/ima/SEM 3 BISMILLAH/psd babi/PA02-FinalProject-PSD/Main.vhd 97 Process state_machine
+# 
+run
+# Cannot continue because of fatal error.
+# HDL call sequence:
+# Stopped at D:/ima/SEM 3 BISMILLAH/psd babi/PA02-FinalProject-PSD/Main.vhd 97 Process state_machine
+# 
+run
+# Cannot continue because of fatal error.
+# HDL call sequence:
+# Stopped at D:/ima/SEM 3 BISMILLAH/psd babi/PA02-FinalProject-PSD/Main.vhd 97 Process state_machine
+# 
+run
+# Cannot continue because of fatal error.
+# HDL call sequence:
+# Stopped at D:/ima/SEM 3 BISMILLAH/psd babi/PA02-FinalProject-PSD/Main.vhd 97 Process state_machine
+# 
+run
+# Cannot continue because of fatal error.
+# HDL call sequence:
+# Stopped at D:/ima/SEM 3 BISMILLAH/psd babi/PA02-FinalProject-PSD/Main.vhd 97 Process state_machine
+# 
+run
+# Cannot continue because of fatal error.
+# HDL call sequence:
+# Stopped at D:/ima/SEM 3 BISMILLAH/psd babi/PA02-FinalProject-PSD/Main.vhd 97 Process state_machine
+# 
+run
+# Cannot continue because of fatal error.
+# HDL call sequence:
+# Stopped at D:/ima/SEM 3 BISMILLAH/psd babi/PA02-FinalProject-PSD/Main.vhd 97 Process state_machine
+# 
+run
+# Cannot continue because of fatal error.
+# HDL call sequence:
+# Stopped at D:/ima/SEM 3 BISMILLAH/psd babi/PA02-FinalProject-PSD/Main.vhd 97 Process state_machine
+# 
+run
+# Cannot continue because of fatal error.
+# HDL call sequence:
+# Stopped at D:/ima/SEM 3 BISMILLAH/psd babi/PA02-FinalProject-PSD/Main.vhd 97 Process state_machine
+# 
+run
+# Cannot continue because of fatal error.
+# HDL call sequence:
+# Stopped at D:/ima/SEM 3 BISMILLAH/psd babi/PA02-FinalProject-PSD/Main.vhd 97 Process state_machine
+# 
+run
+# Cannot continue because of fatal error.
+# HDL call sequence:
+# Stopped at D:/ima/SEM 3 BISMILLAH/psd babi/PA02-FinalProject-PSD/Main.vhd 97 Process state_machine
+# 
+run
+# Cannot continue because of fatal error.
+# HDL call sequence:
+# Stopped at D:/ima/SEM 3 BISMILLAH/psd babi/PA02-FinalProject-PSD/Main.vhd 97 Process state_machine
+# 
+run
+# Cannot continue because of fatal error.
+# HDL call sequence:
+# Stopped at D:/ima/SEM 3 BISMILLAH/psd babi/PA02-FinalProject-PSD/Main.vhd 97 Process state_machine
+# 
+run
+# Cannot continue because of fatal error.
+# HDL call sequence:
+# Stopped at D:/ima/SEM 3 BISMILLAH/psd babi/PA02-FinalProject-PSD/Main.vhd 97 Process state_machine
+# 
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+force -freeze sim:/main/clk 1 0, 0 {50 ps} -r 100
+force -freeze sim:/main/rst 0 0
+force -freeze sim:/main/mode 0 0
+force -freeze sim:/main/start 1 0
+run
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /main/caesar_inst
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /main/hill_inst
+run
+# GetModuleFileName: The specified module could not be found.
+# 
+# 
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 200 ps  Iteration: 1  Instance: /main/hill_inst
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+force -freeze sim:/main/clk 1 0, 0 {50 ps} -r 100
+force -freeze sim:/main/rst 0 0
+force -freeze sim:/main/mode 0 0
+force -freeze sim:/main/start 1 0
+run
+# GetModuleFileName: The specified module could not be found.
+# 
+# 
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /main/caesar_inst
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /main/hill_inst
+run
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 200 ps  Iteration: 1  Instance: /main/hill_inst
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+force -freeze sim:/main/mode 1 0
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run -all
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run

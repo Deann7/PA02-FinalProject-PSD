@@ -5,7 +5,7 @@ use IEEE.NUMERIC_STD.ALL;
 entity hillCipher is
     port (
         input  : in STD_LOGIC_VECTOR(7 downto 0);
-        mode   : in STD_LOGIC;  -- 0 for forward process, 1 for reverse
+        mode   : in std_logic_vector(1 downto 0);  -- 0 for forward process, 1 for reverse
         output : out STD_LOGIC_VECTOR(7 downto 0)
     );
 end entity hillCipher;
@@ -30,7 +30,7 @@ begin
         char_value := to_integer(unsigned(input));
 
         if char_value >= 65 and char_value <= 90 then
-            if mode = '0' then  -- Forward process (Encrypt)
+            if mode = "00" then  -- Forward process (Encrypt)
                 transformed_1 := mod26(KEY_MATRIX(0,0) * (char_value - 65) + KEY_MATRIX(0,1) * (char_value - 65));
                 output <= std_logic_vector(to_unsigned(transformed_1 + 65, 8));
             else  -- Reverse process (Decrypt)
@@ -38,7 +38,7 @@ begin
                 output <= std_logic_vector(to_unsigned(transformed_1 + 65, 8));
             end if;
         elsif char_value >= 97 and char_value <= 122 then
-            if mode = '0' then  -- Forward process (Encrypt)
+            if mode = "01" then  -- Forward process (Encrypt)
                 transformed_1 := mod26(KEY_MATRIX(0,0) * (char_value - 97) + KEY_MATRIX(0,1) * (char_value - 97));
                 output <= std_logic_vector(to_unsigned(transformed_1 + 97, 8));
             else  -- Reverse process (Decrypt)

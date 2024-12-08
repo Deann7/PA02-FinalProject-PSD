@@ -3,131 +3,135 @@ use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
 use STD.TEXTIO.ALL;
 
-entity Main_tb is
-end Main_tb;
+entity MainTB is
+end MainTB;
 
-architecture Behavioral of Main_tb is
-    -- Component Declaration for the Unit Under Test (UUT)
+architecture Behavioral of MainTB is
+    -- Komponen yang akan diuji
     component Main
         Port (
-            clk     : in STD_LOGIC;
-            rst     : in STD_LOGIC;
-            mode    : in STD_LOGIC;  -- 0: Encrypt, 1: Decrypt
-            start   : in STD_LOGIC;
-            done    : out STD_LOGIC;
-            error   : out STD_LOGIC
+            clk         : in STD_LOGIC;
+            rst         : in STD_LOGIC;
+            mode        : in STD_LOGIC;
+            start       : in STD_LOGIC;
+            done_out    : out STD_LOGIC;
+            error_out   : out STD_LOGIC
         );
     end component;
 
-    -- Inputs
-    signal clk     : STD_LOGIC := '0';
-    signal rst     : STD_LOGIC := '0';
-    signal mode    : STD_LOGIC := '0';
-    signal start   : STD_LOGIC := '0';
+    -- Sinyal untuk testbench
+    signal clk         : STD_LOGIC := '0';
+    signal rst         : STD_LOGIC := '1';
+    signal mode        : STD_LOGIC := '0';
+    signal start       : STD_LOGIC := '0';
+    signal done_out    : STD_LOGIC;
+    signal error_out   : STD_LOGIC;
 
-    -- Outputs
-    signal done    : STD_LOGIC;
-    signal error   : STD_LOGIC;
-
-    -- Clock period definition
+    -- Konstanta untuk clock period
     constant CLK_PERIOD : time := 10 ns;
 
-    -- Procedure to create input file for testing
-    procedure create_input_file(test_data : string) is
-        file input_file : text open write_mode is "input.txt";
-        variable line_buffer : line;
-    begin
-        write(line_buffer, test_data);
-        writeline(input_file, line_buffer);
-        file_close(input_file);
-    end procedure;
-
-    -- Procedure to read output file and check contents
-    procedure check_output_file(expected_data : string) is
-        file output_file : text open read_mode is "output.txt";
-        variable line_buffer : line;
-        variable read_data : string(1 to expected_data'length);
-    begin
-        if not endfile(output_file) then
-            readline(output_file, line_buffer);
-            read(line_buffer, read_data);
-            assert read_data = expected_data
-                report "Output mismatch. Expected: " & expected_data & ", Got: " & read_data
-                severity failure;
-        else
-            assert false
-                report "Output file is empty"
-                severity failure;
-        end if;
-        file_close(output_file);
-    end procedure;
-
 begin
-    -- Instantiate the Unit Under Test (UUT)
-    uut: Main
-    port map (
-        clk     => clk,
-        rst     => rst,
-        mode    => mode,
-        start   => start,
-        done    => done,
-        error   => error
+    -- Instansiasi Unit Under Test (UUT)
+    uut: Main PORT MAP (
+        clk => clk,
+        rst => rst,
+        mode => mode,
+        start => start,
+        done_out => done_out,
+        error_out => error_out
     );
 
-    -- Clock process
+    -- Proses pembangkit clock
     clk_process: process
     begin
-        clk <= '0';
-        wait for CLK_PERIOD/2;
-        clk <= '1';
-        wait for CLK_PERIOD/2;
-    end process;
-
-    -- Stimulus process
-    stim_process: process
-    begin
-        -- Initialize
-        rst <= '1';
-        mode <= '0';  -- Encryption mode
-        start <= '0';
-        wait for CLK_PERIOD;
-        rst <= '0';
-
-        -- Test Encryption
-        -- Create an input file
-        create_input_file("HELLO");
-        
-        -- Start encryption
-        start <= '1';
-        wait for CLK_PERIOD;
-        start <= '0';
-
-        -- Wait for processing to complete
-        wait until done = '1';
-
-        -- Check output file for encryption
-        check_output_file("ENCRYPTED");
-
-        -- Test Decryption
-        rst <= '1';
-        wait for CLK_PERIOD;
-        rst <= '0';
-
-        mode <= '1';  -- Decryption mode
-        create_input_file("ENCRYPTED");
-        
-        start <= '1';
-        wait for CLK_PERIOD;
-        start <= '0';
-
-        -- Wait for processing to complete
-        wait until done = '1';
-
-        -- Check output file for decryption
-        check_output_file("HELLO");
-
-        -- End simulation
-        report "Simulation completed successfully";
+        while now < 1000 ns loop
+            clk <= '0';
+            wait for CLK_PERIOD/2;
+            clk <= '1';
+            wait for CLK_PERIOD/2;
+        end loop;
         wait;
     end process;
+
+    -- Proses stimuli
+    stim_process: process
+        file check_file : text;
+        variable line_check : line;
+        variable test_line : line;
+    begin
+        -- Inisialisasi file input untuk tes
+        file_open(check_file, "input.txt", read_mode);
+        
+        -- Reset awal
+        rst <= '1';
+        mode <= '0';
+        start <= '0';
+        wait for CLK_PERIOD*2;
+        
+        -- Lepas reset
+        rst <= '0';
+        
+        -- Proses enkripsi (mode = 0)
+        mode <= '0';
+        start <= '1';
+        wait for CLK_PERIOD;
+        start <= '0';
+        
+        -- Tunggu proses selesai
+        wait until done_out = '1';
+        
+        -- Tunggu sejenak
+        wait for CLK_PERIOD*2;
+        
+        -- Proses dekripsi (mode = 1)
+        mode <= '1';
+        start <= '1';
+        wait for CLK_PERIOD;
+        start <= '0';
+        
+        -- Tunggu proses selesai
+        wait until done_out = '1';
+        
+        -- Tutup file
+        file_close(check_file);
+        
+        -- Selesaikan simulasi
+        wait;
+    end process;
+
+    -- Proses verifikasi (opsional)
+    verify_process: process
+        file verify_input_file : text;
+        file verify_decrypt_file : text;
+        variable line_input, line_decrypt : line;
+        variable input_char, decrypt_char : character;
+        variable input_ok : boolean := true;
+    begin
+        wait until done_out = '1';
+        
+        -- Buka file untuk verifikasi
+        file_open(verify_input_file, "input.txt", read_mode);
+        file_open(verify_decrypt_file, "decryptOutput.txt", read_mode);
+        
+        -- Bandingkan karakter per karakter
+        while not endfile(verify_input_file) and not endfile(verify_decrypt_file) loop
+            readline(verify_input_file, line_input);
+            readline(verify_decrypt_file, line_decrypt);
+            
+            read(line_input, input_char);
+            read(line_decrypt, decrypt_char);
+            
+            -- Lakukan pengecekan
+            assert input_char = decrypt_char 
+            report "Karakter tidak cocok: input = " & input_char & ", decrypt = " & decrypt_char 
+            severity failure;
+        end loop;
+        
+        -- Tutup file
+        file_close(verify_input_file);
+        file_close(verify_decrypt_file);
+        
+        wait;
+    end process;
+
 end Behavioral;
