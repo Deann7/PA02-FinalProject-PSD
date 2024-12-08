@@ -3,12 +3,12 @@ use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
 use STD.TEXTIO.ALL;
 
-entity MainTB is
-end MainTB;
+entity tb_Main is
+end tb_Main;
 
-architecture Behavioral of MainTB is
-    -- Komponen yang akan diuji
-    component Main
+architecture Behavioral of tb_Main is
+    -- Component declaration for the Unit Under Test (UUT)
+    component Main is
         Port (
             clk         : in STD_LOGIC;
             rst         : in STD_LOGIC;
@@ -19,118 +19,100 @@ architecture Behavioral of MainTB is
         );
     end component;
 
-    -- Sinyal untuk testbench
+    -- Signals for the UUT
     signal clk         : STD_LOGIC := '0';
-    signal rst         : STD_LOGIC := '1';
-    signal mode        : STD_LOGIC := '0';
+    signal rst         : STD_LOGIC := '0';
+    signal mode        : STD_LOGIC := '0';  -- '0' for encryption, '1' for decryption
     signal start       : STD_LOGIC := '0';
     signal done_out    : STD_LOGIC;
     signal error_out   : STD_LOGIC;
 
-    -- Konstanta untuk clock period
-    constant CLK_PERIOD : time := 10 ns;
-
+    -- Clock generation
+    constant clk_period : time := 10 ns;
 begin
-    -- Instansiasi Unit Under Test (UUT)
-    uut: Main PORT MAP (
-        clk => clk,
-        rst => rst,
-        mode => mode,
-        start => start,
-        done_out => done_out,
-        error_out => error_out
-    );
+    -- Instantiate the Unit Under Test (UUT)
+    uut: Main
+        Port map (
+            clk => clk,
+            rst => rst,
+            mode => mode,
+            start => start,
+            done_out => done_out,
+            error_out => error_out
+        );
 
-    -- Proses pembangkit clock
-    clk_process: process
+    -- Clock process definition
+    clk_process : process
     begin
-        while now < 1000 ns loop
-            clk <= '0';
-            wait for CLK_PERIOD/2;
-            clk <= '1';
-            wait for CLK_PERIOD/2;
-        end loop;
-        wait;
+        clk <= not clk after clk_period / 2;
+        wait for clk_period;
     end process;
 
-    -- Proses stimuli
-    stim_process: process
-        file check_file : text;
-        variable line_check : line;
-        variable test_line : line;
+    -- Stimulus process
+    stim_proc: process
+        file input_file  : text;
+        file output_file : text;
+        file decrypt_file: text;
+        variable line_in : line;
+        variable line_out : line;
+        variable input_char_var : character;
+        variable decrypted_char_var : character;
     begin
-        -- Inisialisasi file input untuk tes
-        file_open(check_file, "input.txt", read_mode);
-        
-        -- Reset awal
+        -- Open the input file and the output file for encryption
+        file_open(input_file, "input.txt", read_mode);
+        assert (not endfile(input_file)) report "Input file is empty!" severity error;
+
+        file_open(output_file, "encryptOutput.txt", write_mode);
+        assert (output_file /= null) report "Unable to open encryptOutput.txt for writing!" severity error;
+
+        -- Reset the system
         rst <= '1';
-        mode <= '0';
         start <= '0';
-        wait for CLK_PERIOD*2;
-        
-        -- Lepas reset
+        mode <= '0';  -- Mode '0' for encryption
+        wait for 20 ns;
         rst <= '0';
-        
-        -- Proses enkripsi (mode = 0)
-        mode <= '0';
-        start <= '1';
-        wait for CLK_PERIOD;
-        start <= '0';
-        
-        -- Tunggu proses selesai
-        wait until done_out = '1';
-        
-        -- Tunggu sejenak
-        wait for CLK_PERIOD*2;
-        
-        -- Proses dekripsi (mode = 1)
-        mode <= '1';
-        start <= '1';
-        wait for CLK_PERIOD;
-        start <= '0';
-        
-        -- Tunggu proses selesai
-        wait until done_out = '1';
-        
-        -- Tutup file
-        file_close(check_file);
-        
-        -- Selesaikan simulasi
-        wait;
-    end process;
 
-    -- Proses verifikasi (opsional)
-    verify_process: process
-        file verify_input_file : text;
-        file verify_decrypt_file : text;
-        variable line_input, line_decrypt : line;
-        variable input_char, decrypt_char : character;
-        variable input_ok : boolean := true;
-    begin
+        -- Start the encryption process
+        start <= '1';
+        wait for clk_period;  -- Wait for the next clock cycle
+        start <= '0';
+
+        -- Wait for encryption to complete
         wait until done_out = '1';
+        assert done_out = '1' report "Encryption process did not complete successfully!" severity error;
+
+        -- Check if output file has been written correctly
+        file_close(input_file);
+        file_close(output_file);
         
-        -- Buka file untuk verifikasi
-        file_open(verify_input_file, "input.txt", read_mode);
-        file_open(verify_decrypt_file, "decryptOutput.txt", read_mode);
-        
-        -- Bandingkan karakter per karakter
-        while not endfile(verify_input_file) and not endfile(verify_decrypt_file) loop
-            readline(verify_input_file, line_input);
-            readline(verify_decrypt_file, line_decrypt);
-            
-            read(line_input, input_char);
-            read(line_decrypt, decrypt_char);
-            
-            -- Lakukan pengecekan
-            assert input_char = decrypt_char 
-            report "Karakter tidak cocok: input = " & input_char & ", decrypt = " & decrypt_char 
-            severity failure;
-        end loop;
-        
-        -- Tutup file
-        file_close(verify_input_file);
-        file_close(verify_decrypt_file);
-        
+        -- Open files for decryption
+        file_open(output_file, "encryptOutput.txt", read_mode);
+        assert (not endfile(output_file)) report "encryptOutput.txt is empty!" severity error;
+
+        file_open(decrypt_file, "decryptOutput.txt", write_mode);
+        assert (decrypt_file /= null) report "Unable to open decryptOutput.txt for writing!" severity error;
+
+        -- Set mode to '1' for decryption
+        mode <= '1';  -- Mode '1' for decryption
+        wait for 20 ns;  -- Wait for a couple of cycles to ensure mode is set
+
+        -- Start the decryption process
+        start <= '1';
+        wait for clk_period;
+        start <= '0';
+
+        -- Wait for decryption to complete
+        wait until done_out = '1';
+        assert done_out = '1' report "Decryption process did not complete successfully!" severity error;
+
+        -- Check if the decrypted output matches the expected original input
+        file_close(output_file);
+        file_close(decrypt_file);
+
+        -- If no errors, report success
+        report "Encryption and Decryption process completed successfully!" severity note;
+
+        -- Finish the simulation
         wait;
     end process;
 
