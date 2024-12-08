@@ -22,9 +22,12 @@ architecture Behavioral of cipher_combined is
                        HILL_ENC2, CAESAR_ENC2, CAESAR_DEC2, HILL_DEC2); -- Case 2
     signal current_state, next_state : state_type;
     
-    -- Internal signals for intermediate results
-    signal caesar_enc_out, hill_enc_out, hill_dec_out, caesar_dec_out : STD_LOGIC_VECTOR(7 downto 0);
-    
+    -- Internal signals
+    signal caesar_mode, hill_mode : STD_LOGIC;
+    signal caesar_input, hill_input : STD_LOGIC_VECTOR(7 downto 0);
+    signal caesar_enc_out, hill_enc_out : STD_LOGIC_VECTOR(7 downto 0);
+    signal hill_dec_out, caesar_dec_out : STD_LOGIC_VECTOR(7 downto 0);
+
     -- Component declarations
     component caesar_cipher
         Port ( 
@@ -52,20 +55,20 @@ begin
     caesar_inst: caesar_cipher port map (
         clk => clk,
         reset => reset,
-        mode => mode,
+        mode => caesar_mode,
         shift_value => shift_value,
-        input_char => input_char,
+        input_char => caesar_input,
         processed_char => caesar_enc_out
     );
     
     hill_inst: hill_cipher_combined port map (
         clk => clk,
         reset => reset,
-        mode => mode,
-        input_char => caesar_enc_out,
+        mode => hill_mode,
+        input_char => hill_input,
         processed_char => hill_enc_out
     );
-    
+
     -- FSM Process
     process(clk, reset)
     begin
@@ -112,7 +115,75 @@ begin
                 next_state <= IDLE;
         end case;
     end process;
-    
+
+    -- Mode control process
+    process(current_state)
+    begin
+        -- Default values
+        caesar_mode <= '0';
+        hill_mode <= '0';
+        
+        case current_state is
+            when CAESAR_ENC =>
+                caesar_mode <= '0';  -- Encrypt
+            when HILL_ENC =>
+                hill_mode <= '0';    -- Encrypt
+            when HILL_DEC =>
+                hill_mode <= '1';    -- Decrypt
+            when CAESAR_DEC =>
+                caesar_mode <= '1';  -- Decrypt
+            when HILL_ENC2 =>
+                hill_mode <= '0';    -- Encrypt
+            when CAESAR_ENC2 =>
+                caesar_mode <= '0';  -- Encrypt
+            when CAESAR_DEC2 =>
+                caesar_mode <= '1';  -- Decrypt
+            when HILL_DEC2 =>
+                hill_mode <= '1';    -- Decrypt
+            when others =>
+                caesar_mode <= '0';
+                hill_mode <= '0';
+        end case;
+    end process;
+
+    -- Intermediate results process
+    process(clk)
+    begin
+        if rising_edge(clk) then
+            case current_state is
+                when HILL_DEC | HILL_DEC2 =>
+                    hill_dec_out <= hill_enc_out;
+                when CAESAR_DEC | CAESAR_DEC2 =>
+                    caesar_dec_out <= caesar_enc_out;
+                when others =>
+                    hill_dec_out <= (others => '0');
+                    caesar_dec_out <= (others => '0');
+            end case;
+        end if;
+    end process;
+
+    -- Input routing process
+    process(current_state, input_char, caesar_enc_out, hill_dec_out, caesar_dec_out)
+    begin
+        -- Default values
+        caesar_input <= (others => '0');
+        hill_input <= (others => '0');
+        
+        case current_state is
+            when CAESAR_ENC | CAESAR_ENC2 =>
+                caesar_input <= input_char;
+            when CAESAR_DEC | CAESAR_DEC2 =>
+                caesar_input <= hill_dec_out;
+            when HILL_ENC | HILL_ENC2 =>
+                hill_input <= caesar_enc_out;
+            when HILL_DEC | HILL_DEC2 =>
+                hill_input <= caesar_dec_out;
+            when others =>
+                caesar_input <= (others => '0');
+                hill_input <= (others => '0');
+        end case;
+    end process;
+
     -- Output Logic
     process(current_state, caesar_enc_out, hill_enc_out, hill_dec_out, caesar_dec_out)
     begin
@@ -120,23 +191,18 @@ begin
             when IDLE =>
                 output_char <= (others => '0');
                 done <= '0';
-                
-            when CAESAR_ENC =>
+            when CAESAR_ENC | CAESAR_ENC2 =>
                 output_char <= caesar_enc_out;
                 done <= '0';
-                
             when HILL_ENC | HILL_ENC2 =>
                 output_char <= hill_enc_out;
                 done <= '0';
-                
             when HILL_DEC | HILL_DEC2 =>
                 output_char <= hill_dec_out;
                 done <= '0';
-                
             when CAESAR_DEC | CAESAR_DEC2 =>
                 output_char <= caesar_dec_out;
                 done <= '1';
-                
             when others =>
                 output_char <= (others => '0');
                 done <= '0';
