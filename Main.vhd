@@ -1,158 +1,182 @@
-library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
-use IEEE.NUMERIC_STD.ALL;
-use STD.TEXTIO.ALL;
+LIBRARY IEEE;
+USE IEEE.STD_LOGIC_1164.ALL;
+USE IEEE.NUMERIC_STD.ALL;
+USE STD.TEXTIO.ALL;
 
-entity Main is
-    Port (
-        clk         : in STD_LOGIC;
-        rst         : in STD_LOGIC;
-        mode        : in STD_LOGIC;
-        start       : in STD_LOGIC;
-        done_out    : out STD_LOGIC;
-        error_out   : out STD_LOGIC
+ENTITY Main IS
+    PORT (
+        clk : IN STD_LOGIC;
+        rst : IN STD_LOGIC;
+        mode : IN STD_LOGIC; -- '0' for encrypt, '1' for decrypt
+        start : IN STD_LOGIC;
+        done_out : OUT STD_LOGIC;
+        error_out : OUT STD_LOGIC
     );
-end Main;
+END Main;
 
-architecture Behavioral of Main is
-    type state_type is (
-        IDLE, 
+ARCHITECTURE Behavioral OF Main IS
+    -- State definitions
+    TYPE state_type IS (
+        IDLE,
         OPEN_INPUT_FILE,
-        READ_INPUT, 
+        READ_INPUT,
         CAESAR_PROCESS,
-        HILL_PROCESS, 
-        WRITE_OUTPUT, 
-        COMPLETE, 
+        HILL_PROCESS,
+        WRITE_PHASE1,
+        WRITE_FINAL_OUTPUT,
+        COMPLETE,
         ERROR_STATE
     );
-    
-    component caesarCipher is
-        port (
-            input   : in  std_logic_vector(7 downto 0);
-            cipher  : out std_logic_vector(7 downto 0)
+
+    SIGNAL current_state : state_type := IDLE;
+
+    -- Component declarations
+    COMPONENT caesarChiper
+        PORT (
+            input : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
+            mode : IN STD_LOGIC;
+            shift_char : IN INTEGER RANGE 0 TO 25;
+            cipher : OUT STD_LOGIC_VECTOR(7 DOWNTO 0)
         );
-    end component;
+    END COMPONENT;
 
-    component hillCipher is
-        port (
-            input  : in STD_LOGIC_VECTOR(7 downto 0);
-            mode   : in STD_LOGIC_VECTOR(1 downto 0);
-            output : out STD_LOGIC_VECTOR(7 downto 0)
+    COMPONENT hillCipher
+        PORT (
+            input : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
+            mode : IN STD_LOGIC;
+            output : OUT STD_LOGIC_VECTOR(7 DOWNTO 0)
         );
-    end component;
+    END COMPONENT;
 
-    signal input_char : std_logic_vector(7 downto 0);
-    signal caesar_out, hill_out : std_logic_vector(7 downto 0);
-    signal current_state : state_type := IDLE;
-    signal main_mode : std_logic;
-    signal hill_mode : std_logic_vector(1 downto 0);
-    signal done : std_logic := '0';
-    signal error : std_logic := '0';
+    -- Signals
+    SIGNAL input_char : STD_LOGIC_VECTOR(7 DOWNTO 0);
+    SIGNAL caesar_out, hill_out : STD_LOGIC_VECTOR(7 DOWNTO 0);
+    SIGNAL processing_mode : STD_LOGIC;
+    SIGNAL done : STD_LOGIC := '0';
+    SIGNAL error : STD_LOGIC := '0';
+    CONSTANT CAESAR_SHIFT : INTEGER := 3;
 
-begin
-    -- Hill cipher instantiation
-    hill_inst : hillCipher port map (
+BEGIN
+    -- Component instantiations
+    caesar_inst : caesarChiper PORT MAP(
         input => input_char,
-        mode => hill_mode,
-        output => hill_out
-    );
-
-    -- Caesar cipher instantiation
-    caesar_inst : caesarCipher port map (
-        input => input_char,
+        mode => processing_mode,
+        shift_char => CAESAR_SHIFT,
         cipher => caesar_out
     );
 
+    hill_inst : hillCipher PORT MAP(
+        input => input_char,
+        mode => processing_mode,
+        output => hill_out
+    );
+
+    -- Output assignments
     done_out <= done;
     error_out <= error;
 
-    -- State Machine Process
-    state_machine: process(clk, rst)
-        file input_file  : text;
-        file output_file : text;
-        variable line_in : line;
-        variable line_out : line;
-        variable input_char_var : character;
-    begin
-        if rst = '1' then
+    -- Main state machine
+    state_machine : PROCESS (clk, rst)
+        FILE input_file : text;
+        FILE phase1_file : text;
+        FILE final_output_file : text;
+
+        VARIABLE line_in : line;
+        VARIABLE line_out : line;
+        VARIABLE input_char_var : CHARACTER;
+        VARIABLE is_file_open : BOOLEAN := false;
+    BEGIN
+        IF rst = '1' THEN
             current_state <= IDLE;
             done <= '0';
             error <= '0';
-        elsif rising_edge(clk) then
-            case current_state is
-                when IDLE =>
-                    if start = '1' then
-                        main_mode <= mode;
+            processing_mode <= '0';
+            is_file_open := false;
+        ELSIF rising_edge(clk) THEN
+            CASE current_state IS
+                WHEN IDLE =>
+                    IF start = '1' THEN
+                        processing_mode <= mode;
                         current_state <= OPEN_INPUT_FILE;
                         done <= '0';
                         error <= '0';
-                    end if;
+                    END IF;
 
-                when OPEN_INPUT_FILE =>
-                    if main_mode = '0' then
+                WHEN OPEN_INPUT_FILE =>
+                    IF processing_mode = '0' THEN
                         file_open(input_file, "input.txt", read_mode);
-                        file_open(output_file, "encryptOutput.txt", write_mode);
-                        hill_mode <= "00";  -- Enkripsi normal
-                    else
-                        file_open(input_file, "encryptOutput.txt", read_mode);
-                        file_open(output_file, "decryptOutput.txt", write_mode);
-                        hill_mode <= "01";  -- Dekripsi (invers matriks)
-                    end if;
+                        file_open(phase1_file, "phase1.txt", write_mode);
+                        file_open(final_output_file, "encryptOutput.txt", write_mode);
+                    ELSE
+                        file_open(input_file, "encryptOutput.txt", read_mode); -- Gunakan file enkripsi sebagai input untuk dekripsi
+                        file_open(final_output_file, "decryptOutput.txt", write_mode);
+                    END IF;
+
+                    is_file_open := true;
                     current_state <= READ_INPUT;
 
-                when READ_INPUT =>
-                    if not endfile(input_file) then
+                WHEN READ_INPUT =>
+                    IF NOT endfile(input_file) THEN
                         readline(input_file, line_in);
                         read(line_in, input_char_var);
-                        input_char <= std_logic_vector(to_unsigned(character'pos(input_char_var), 8));
-                        
-                        if main_mode = '0' then
-                            current_state <= CAESAR_PROCESS; -- Mode enkripsi: mulai dari Caesar
-                        else
-                            current_state <= HILL_PROCESS;  -- Mode dekripsi: mulai dari Hill Cipher
-                        end if;
-                    else
-                        file_close(input_file);
-                        file_close(output_file);
+                        input_char <= STD_LOGIC_VECTOR(to_unsigned(CHARACTER'pos(input_char_var), 8));
+
+                        IF processing_mode = '0' THEN -- Gunakan processing_mode, bukan mode
+                            current_state <= CAESAR_PROCESS;
+                        ELSE
+                            current_state <= HILL_PROCESS;
+                        END IF;
+                    ELSE
                         current_state <= COMPLETE;
-                    end if;
+                    END IF;
 
-                when CAESAR_PROCESS =>
-                    -- Proses Caesar Cipher di mode enkripsi
-                    if main_mode = '0' then
-                        input_char <= caesar_out;
-                        current_state <= HILL_PROCESS; 
-                    else
-                        input_char <= caesar_out;
-                        current_state <= WRITE_OUTPUT;
-                    end if; 
-
-                when HILL_PROCESS =>
-                    -- Proses Hill Cipher di mode enkripsi
-                    if main_mode = '0' then
-                        input_char <= hill_out;
-                        current_state <= WRITE_OUTPUT;
-                    else
-                        input_char <= hill_out;
+                WHEN HILL_PROCESS =>
+                    IF processing_mode = '1' THEN -- Dekripsi
+                        input_char <= hill_out; -- Dekripsi Hill Cipher dulu
+                        write(line_out, CHARACTER'val(to_integer(unsigned(hill_out))));
+                        -- writeline(phase1_file, line_out);  -- Ini yang menyebabkan error
                         current_state <= CAESAR_PROCESS;
-                    end if;
+                    ELSE -- Enkripsi
+                        input_char <= hill_out;
+                        write(line_out, CHARACTER'val(to_integer(unsigned(hill_out))));
+                        writeline(phase1_file, line_out);
+                        current_state <= WRITE_FINAL_OUTPUT;
+                    END IF;
 
-                when WRITE_OUTPUT =>
-                    write(line_out, character'val(to_integer(unsigned(input_char))));  -- Menulis ke file
-                    writeline(output_file, line_out);
+                WHEN CAESAR_PROCESS =>
+                    IF processing_mode = '1' THEN -- Dekripsi
+                        input_char <= caesar_out; -- Kemudian dekripsi Caesar Cipher
+                        write(line_out, CHARACTER'val(to_integer(unsigned(caesar_out))));
+                        writeline(final_output_file, line_out);
+                        current_state <= WRITE_FINAL_OUTPUT;
+                    ELSE -- Enkripsi (tetap sama)
+                        input_char <= caesar_out;
+                        write(line_out, CHARACTER'val(to_integer(unsigned(caesar_out))));
+                        writeline(phase1_file, line_out);
+                        current_state <= HILL_PROCESS;
+                    END IF;
+
+                WHEN WRITE_FINAL_OUTPUT =>
                     current_state <= READ_INPUT;
 
-                when COMPLETE =>
+                WHEN COMPLETE =>
+                    IF is_file_open THEN
+                        file_close(input_file);
+                        file_close(phase1_file);
+                        file_close(final_output_file);
+                        is_file_open := false;
+                    END IF;
+
                     done <= '1';
                     current_state <= IDLE;
 
-                when ERROR_STATE =>
+                WHEN ERROR_STATE =>
                     error <= '1';
                     current_state <= IDLE;
 
-                when others =>
+                WHEN OTHERS =>
                     current_state <= ERROR_STATE;
-            end case;
-        end if;
-    end process state_machine;
-end Behavioral;
+            END CASE;
+        END IF;
+    END PROCESS state_machine;
+END Behavioral;

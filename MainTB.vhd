@@ -3,12 +3,11 @@ use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
 use STD.TEXTIO.ALL;
 
-entity tb_Main is
-end tb_Main;
+entity MainTB is
+end MainTB;
 
-architecture Behavioral of tb_Main is
-    -- Component declaration for the Unit Under Test (UUT)
-    component Main is
+architecture Behavioral of MainTB is
+    component Main
         Port (
             clk         : in STD_LOGIC;
             rst         : in STD_LOGIC;
@@ -19,101 +18,119 @@ architecture Behavioral of tb_Main is
         );
     end component;
 
-    -- Signals for the UUT
     signal clk         : STD_LOGIC := '0';
     signal rst         : STD_LOGIC := '0';
-    signal mode        : STD_LOGIC := '0';  -- '0' for encryption, '1' for decryption
+    signal mode        : STD_LOGIC := '0';
     signal start       : STD_LOGIC := '0';
-    signal done_out    : STD_LOGIC;
-    signal error_out   : STD_LOGIC;
+    signal done_out    : STD_LOGIC := '0';
+    signal error_out   : STD_LOGIC := '0';
+
+    constant CLK_PERIOD : time := 10 ns;
+
+begin
+    uut: Main PORT MAP (
+        clk => clk,
+        rst => rst,
+        mode => mode,
+        start => start,
+        done_out => done_out,
+        error_out => error_out
+    );
 
     -- Clock generation
-    constant clk_period : time := 10 ns;
-begin
-    -- Instantiate the Unit Under Test (UUT)
-    uut: Main
-        Port map (
-            clk => clk,
-            rst => rst,
-            mode => mode,
-            start => start,
-            done_out => done_out,
-            error_out => error_out
-        );
-
-    -- Clock process definition
-    clk_process : process
+    clk_process: process
     begin
-        clk <= not clk after clk_period / 2;
-        wait for clk_period;
-    end process;
-
-    -- Stimulus process
-    stim_proc: process
-        file input_file  : text;
-        file output_file : text;
-        file decrypt_file: text;
-        variable line_in : line;
-        variable line_out : line;
-        variable input_char_var : character;
-        variable decrypted_char_var : character;
-    begin
-        -- Open the input file and the output file for encryption
-        file_open(input_file, "input.txt", read_mode);
-        assert (not endfile(input_file)) report "Input file is empty!" severity error;
-
-        file_open(output_file, "encryptOutput.txt", write_mode);
-        assert (output_file /= null) report "Unable to open encryptOutput.txt for writing!" severity error;
-
-        -- Reset the system
-        rst <= '1';
-        start <= '0';
-        mode <= '0';  -- Mode '0' for encryption
-        wait for 20 ns;
-        rst <= '0';
-
-        -- Start the encryption process
-        start <= '1';
-        wait for clk_period;  -- Wait for the next clock cycle
-        start <= '0';
-
-        -- Wait for encryption to complete
-        wait until done_out = '1';
-        assert done_out = '1' report "Encryption process did not complete successfully!" severity error;
-
-        -- Check if output file has been written correctly
-        file_close(input_file);
-        file_close(output_file);
-        
-        -- Open files for decryption
-        file_open(output_file, "encryptOutput.txt", read_mode);
-        assert (not endfile(output_file)) report "encryptOutput.txt is empty!" severity error;
-
-        file_open(decrypt_file, "decryptOutput.txt", write_mode);
-        assert (decrypt_file /= null) report "Unable to open decryptOutput.txt for writing!" severity error;
-
-        -- Set mode to '1' for decryption
-        mode <= '1';  -- Mode '1' for decryption
-        wait for 20 ns;  -- Wait for a couple of cycles to ensure mode is set
-
-        -- Start the decryption process
-        start <= '1';
-        wait for clk_period;
-        start <= '0';
-
-        -- Wait for decryption to complete
-        wait until done_out = '1';
-        assert done_out = '1' report "Decryption process did not complete successfully!" severity error;
-
-        -- Check if the decrypted output matches the expected original input
-        file_close(output_file);
-        file_close(decrypt_file);
-
-        -- If no errors, report success
-        report "Encryption and Decryption process completed successfully!" severity note;
-
-        -- Finish the simulation
+        while now < 2000 ns loop
+            clk <= '0';
+            wait for CLK_PERIOD/2;
+            clk <= '1';
+            wait for CLK_PERIOD/2;
+        end loop;
         wait;
     end process;
 
+    -- Stimulus process
+    stim_process: process
+        procedure write_input_file(data : string) is
+            file input_file : text open write_mode is "input.txt";
+            variable line_out : line;
+        begin
+            for i in data'range loop
+                write(line_out, data(i));
+                writeline(input_file, line_out);
+            end loop;
+            file_close(input_file);
+            report "Input written to file: " & data severity note;
+        end procedure;
+
+        procedure read_output_file(is_encrypt : boolean; expected_data : string) is
+            file output_file : text;
+            variable line_in : line;
+            variable output_char : character;
+            variable output_string : string(1 to expected_data'length);
+            variable index : integer := 1;
+        begin
+            if is_encrypt then
+                report "Reading Encrypted Output" severity note;
+                file_open(output_file, "encryptOutput.txt", read_mode);
+            else
+                report "Reading Decrypted Output" severity note;
+                file_open(output_file, "decryptOutput.txt", read_mode);
+            end if;
+
+            index := 1;
+            while not endfile(output_file) and index <= expected_data'length loop
+                readline(output_file, line_in);
+                read(line_in, output_char);
+                output_string(index) := output_char;
+                report "Output Char: " & output_char severity note;
+                index := index + 1;
+            end loop;
+
+            file_close(output_file);
+
+            if output_string /= expected_data then
+                report "Got:      " & output_string severity note;
+            else
+                report "Output matches expected data" severity note;
+            end if;
+        end procedure;
+
+    begin
+        -- Scenario 1: Encryption
+        rst <= '1';
+        wait for CLK_PERIOD;
+        rst <= '0';
+
+        report "SKENARIO ENKRIPSI" severity note;
+        write_input_file("hello");
+
+        mode <= '0';
+        start <= '1';
+        wait for CLK_PERIOD;
+        start <= '0';
+
+        wait until done_out = '1';
+        wait for CLK_PERIOD;
+
+        read_output_file(true, "mlwwx");
+
+        -- Scenario 2: Decryption
+        rst <= '1';
+        wait for CLK_PERIOD;
+        rst <= '0';
+
+        report "SKENARIO DEKRIPSI" severity note;
+        mode <= '1';
+        start <= '1';
+        wait for CLK_PERIOD;
+        start <= '0';
+
+        wait until done_out = '1';
+        wait for CLK_PERIOD;
+
+        read_output_file(false, "hello");
+
+        wait;
+    end process;
 end Behavioral;

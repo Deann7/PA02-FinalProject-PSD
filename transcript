@@ -1,30 +1,24 @@
-# Compile of caesarCipher.vhd was successful.
-# Compile of hillCipher.vhd was successful.
-# Compile of Main.vhd was successful.
-# Compile of MainTB.vhd was successful.
-# 4 compiles, 0 failed with no errors.
 vsim -gui work.main
 # vsim -gui work.main 
-# Start time: 06:17:33 on Dec 08,2024
+# Start time: 18:39:04 on Dec 08,2024
 # Loading std.standard
 # Loading std.textio(body)
 # Loading ieee.std_logic_1164(body)
 # Loading ieee.numeric_std(body)
 # Loading work.main(behavioral)
-# Loading work.caesarcipher(behavioral)
+# Loading work.caesarchiper(behavioral)
 # Loading work.hillcipher(behavioral)
+add wave -position insertpoint sim:/main/*
 add wave -position insertpoint sim:/main/*
 force -freeze sim:/main/clk 1 0, 0 {50 ps} -r 100
 force -freeze sim:/main/rst 0 0
-force -freeze sim:/main/mode 1 0
+force -freeze sim:/main/mode 0 0
 force -freeze sim:/main/start 1 0
 run
 # ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 0 ps  Iteration: 0  Instance: /main/hill_inst
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
 #    Time: 0 ps  Iteration: 0  Instance: /main/caesar_inst
 # ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 100 ps  Iteration: 1  Instance: /main/hill_inst
+#    Time: 100 ps  Iteration: 1  Instance: /main/caesar_inst
 run
 run
 run
@@ -46,70 +40,7 @@ run
 run
 run
 run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-# Compile of caesarCipher.vhd was successful.
-# Compile of hillCipher.vhd was successful.
-# Compile of Main.vhd was successful.
-# Compile of MainTB.vhd was successful.
-# 4 compiles, 0 failed with no errors.
-vsim -gui work.main
-# End time: 06:27:41 on Dec 08,2024, Elapsed time: 0:10:08
-# Errors: 0, Warnings: 9
-# vsim -gui work.main 
-# Start time: 06:27:41 on Dec 08,2024
-# Loading std.standard
-# Loading std.textio(body)
-# Loading ieee.std_logic_1164(body)
-# Loading ieee.numeric_std(body)
-# Loading work.main(behavioral)
-# Loading work.caesarcipher(behavioral)
-# Loading work.hillcipher(behavioral)
-add wave -position insertpoint sim:/main/*
-force -freeze sim:/main/clk 1 0, 0 {50 ps} -r 100
-force -freeze sim:/main/rst 0 0
 force -freeze sim:/main/mode 1 0
-force -freeze sim:/main/start 1 0
-run
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 0 ps  Iteration: 0  Instance: /main/hill_inst
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 0 ps  Iteration: 0  Instance: /main/caesar_inst
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
 run
 run
 run
@@ -133,175 +64,29 @@ run
 run
 # Compile of Main.vhd was successful.
 vsim -gui work.main
-# End time: 06:35:09 on Dec 08,2024, Elapsed time: 0:07:28
+# End time: 18:55:45 on Dec 08,2024, Elapsed time: 0:16:41
 # Errors: 0, Warnings: 4
 # vsim -gui work.main 
-# Start time: 06:35:09 on Dec 08,2024
+# Start time: 18:55:45 on Dec 08,2024
 # Loading std.standard
 # Loading std.textio(body)
 # Loading ieee.std_logic_1164(body)
 # Loading ieee.numeric_std(body)
 # Loading work.main(behavioral)
-# Loading work.caesarcipher(behavioral)
+# Loading work.caesarchiper(behavioral)
 # Loading work.hillcipher(behavioral)
-add wave -position insertpoint sim:/main/*
-force -freeze sim:/main/clk 1 0, 0 {50 ps} -r 100
-force -freeze sim:/main/rst 0 0
-force -freeze sim:/main/mode 0 0
-force -freeze sim:/main/start 1 0
-run
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 0 ps  Iteration: 0  Instance: /main/hill_inst
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 0 ps  Iteration: 0  Instance: /main/caesar_inst
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 100 ps  Iteration: 1  Instance: /main/hill_inst
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-# Compile of MainTB.vhd failed with 5 errors.
-# Load canceled
-vsim -gui work.maintb
-# End time: 06:46:26 on Dec 08,2024, Elapsed time: 0:11:17
-# Errors: 0, Warnings: 5
-# vsim -gui work.maintb 
-# Start time: 06:46:26 on Dec 08,2024
-# Loading std.standard
-# ** Error: (vsim-3173) Entity 'D:/ima/SEM 3 BISMILLAH/psd babi/PA02-FinalProject-PSD/work.maintb' has no architecture.
-# Error loading design
-# End time: 06:46:26 on Dec 08,2024, Elapsed time: 0:00:00
-# Errors: 1, Warnings: 1
-# Compile of MainTB.vhd failed with 4 errors.
-# Compile of MainTB.vhd failed with 1 errors.
-# Compile of MainTB.vhd failed with 1 errors.
-# Compile of MainTB.vhd failed with 1 errors.
-# Compile of MainTB.vhd failed with 4 errors.
-# Compile of MainTB.vhd failed with 4 errors.
-# Compile of MainTB.vhd was successful.
-vsim -gui work.main_tb
-# vsim -gui work.main_tb 
-# Start time: 06:58:14 on Dec 08,2024
-# Loading std.standard
-# Loading std.textio(body)
-# Loading ieee.std_logic_1164(body)
-# Loading ieee.numeric_std(body)
-# Loading work.main_tb(behavioral)
-# Loading work.main(behavioral)
-# ** Error: (vsim-3732) No default binding for component instance 'uut'.
-#    The following component ports are not on the entity:
-#           error
-#           done
-#    Time: 0 ps  Iteration: 0  Instance: /main_tb/uut File: D:/ima/SEM 3 BISMILLAH/psd babi/PA02-FinalProject-PSD/MainTB.vhd Line: 75
-# Loading work.caesarcipher(behavioral)
-# Loading work.hillcipher(behavioral)
-# Error loading design
-# End time: 06:58:15 on Dec 08,2024, Elapsed time: 0:00:01
-# Errors: 1, Warnings: 8
-# Compile of MainTB.vhd was successful.
-# Load canceled
-vsim -gui work.maintb
-# vsim -gui work.maintb 
-# Start time: 07:05:04 on Dec 08,2024
-# Loading std.standard
-# Loading std.textio(body)
-# Loading ieee.std_logic_1164(body)
-# Loading ieee.numeric_std(body)
-# Loading work.maintb(behavior)
-# Loading work.main(behavioral)
-# Loading work.caesarcipher(behavioral)
-# Loading work.hillcipher(behavioral)
-add wave -position insertpoint sim:/maintb/*
-run -all
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 0 ps  Iteration: 0  Instance: /maintb/uut/hill_inst
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 0 ps  Iteration: 0  Instance: /maintb/uut/caesar_inst
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 0 ps  Iteration: 1  Instance: /maintb/uut/hill_inst
-# ** Fatal: (vsim-3341) Cannot open file "input.txt"; it is already open.
-#    Time: 40 ns  Iteration: 0  Process: /maintb/stimulus File: D:/ima/SEM 3 BISMILLAH/psd babi/PA02-FinalProject-PSD/MainTB.vhd
-# Fatal error in Process stimulus at D:/ima/SEM 3 BISMILLAH/psd babi/PA02-FinalProject-PSD/MainTB.vhd line 75
-# 
-# HDL call sequence:
-# Stopped at D:/ima/SEM 3 BISMILLAH/psd babi/PA02-FinalProject-PSD/MainTB.vhd 75 Process stimulus
-# 
-# Compile of MainTB.vhd was successful.
-# Load canceled
-# Compile of MainTB.vhd was successful.
-vsim -gui work.maintb
-# End time: 07:09:28 on Dec 08,2024, Elapsed time: 0:04:24
-# Errors: 1, Warnings: 7
-# vsim -gui work.maintb 
-# Start time: 07:09:28 on Dec 08,2024
-# Loading std.standard
-# Loading std.textio(body)
-# Loading ieee.std_logic_1164(body)
-# Loading ieee.numeric_std(body)
-# Loading work.maintb(behavior)
-# Loading work.main(behavioral)
-# Loading work.caesarcipher(behavioral)
-# Loading work.hillcipher(behavioral)
-add wave -position insertpoint sim:/maintb/*
-run -all
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 0 ps  Iteration: 0  Instance: /maintb/uut/hill_inst
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 0 ps  Iteration: 0  Instance: /maintb/uut/caesar_inst
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 0 ps  Iteration: 1  Instance: /maintb/uut/hill_inst
-# ** Fatal: (vsim-3341) Cannot open file "input.txt"; it is already open.
-#    Time: 40 ns  Iteration: 0  Process: /maintb/stimulus File: D:/ima/SEM 3 BISMILLAH/psd babi/PA02-FinalProject-PSD/MainTB.vhd
-# Fatal error in Process stimulus at D:/ima/SEM 3 BISMILLAH/psd babi/PA02-FinalProject-PSD/MainTB.vhd line 72
-# 
-# HDL call sequence:
-# Stopped at D:/ima/SEM 3 BISMILLAH/psd babi/PA02-FinalProject-PSD/MainTB.vhd 72 Process stimulus
-# 
 # Compile of Main.vhd was successful.
 vsim -gui work.main
-# End time: 07:22:01 on Dec 08,2024, Elapsed time: 0:12:33
-# Errors: 1, Warnings: 5
+# End time: 18:56:24 on Dec 08,2024, Elapsed time: 0:00:39
+# Errors: 0, Warnings: 2
 # vsim -gui work.main 
-# Start time: 07:22:02 on Dec 08,2024
+# Start time: 18:56:24 on Dec 08,2024
 # Loading std.standard
 # Loading std.textio(body)
 # Loading ieee.std_logic_1164(body)
 # Loading ieee.numeric_std(body)
 # Loading work.main(behavioral)
-# Loading work.caesarcipher(behavioral)
+# Loading work.caesarchiper(behavioral)
 # Loading work.hillcipher(behavioral)
 add wave -position insertpoint sim:/main/*
 force -freeze sim:/main/clk 1 0, 0 {50 ps} -r 100
@@ -310,11 +95,9 @@ force -freeze sim:/main/mode 0 0
 force -freeze sim:/main/start 1 0
 run
 # ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 0 ps  Iteration: 0  Instance: /main/hill_inst
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
 #    Time: 0 ps  Iteration: 0  Instance: /main/caesar_inst
 # ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 100 ps  Iteration: 1  Instance: /main/hill_inst
+#    Time: 100 ps  Iteration: 1  Instance: /main/caesar_inst
 run
 run
 run
@@ -338,11 +121,9 @@ run
 run
 run
 run
-force -freeze sim:/main/rst 1 0
 force -freeze sim:/main/mode 1 0
 run
 run
-force -freeze sim:/main/rst 0 0
 run
 run
 run
@@ -359,66 +140,401 @@ run
 run
 run
 run
-# Compile of Main.vhd failed with 1 errors.
-# Load canceled
-# Compile of caesarCipher.vhd was successful.
-# Compile of hillCipher.vhd was successful.
-# Compile of Main.vhd failed with 1 errors.
-# Compile of MainTB.vhd was successful.
-# 4 compiles, 1 failed with 1 error.
-# Compile of Main.vhd was successful.
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
 vsim -gui work.maintb
-# End time: 07:41:35 on Dec 08,2024, Elapsed time: 0:19:33
-# Errors: 0, Warnings: 7
+# End time: 19:03:44 on Dec 08,2024, Elapsed time: 0:07:20
+# Errors: 0, Warnings: 3
 # vsim -gui work.maintb 
-# Start time: 07:41:35 on Dec 08,2024
+# Start time: 19:03:44 on Dec 08,2024
 # Loading std.standard
 # Loading std.textio(body)
 # Loading ieee.std_logic_1164(body)
 # Loading ieee.numeric_std(body)
 # Loading work.maintb(behavioral)
 # Loading work.main(behavioral)
-# Loading work.caesarcipher(behavioral)
+# Loading work.caesarchiper(behavioral)
 # Loading work.hillcipher(behavioral)
 add wave -position insertpoint sim:/maintb/*
 run -all
 # ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 0 ps  Iteration: 0  Instance: /maintb/uut/hill_inst
+#    Time: 0 ps  Iteration: 0  Instance: /maintb/uut/caesar_inst
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 2  Instance: /maintb/uut/caesar_inst
+# ** Note: SKENARIO ENKRIPSI
+#    Time: 10 ns  Iteration: 0  Instance: /maintb
+# ** Note: Input written to file: hello
+#    Time: 10 ns  Iteration: 0  Instance: /maintb
+# ** Note: Reading Encrypted Output
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: m
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: l
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: w
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: w
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: x
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output matches expected data
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: SKENARIO DEKRIPSI
+#    Time: 265 ns  Iteration: 0  Instance: /maintb
+# ** Note: Reading Decrypted Output
+#    Time: 505 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: x
+#    Time: 505 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: x
+#    Time: 505 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: x
+#    Time: 505 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: x
+#    Time: 505 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: x
+#    Time: 505 ns  Iteration: 0  Instance: /maintb
+# ** Note: Got:      xxxxx
+#    Time: 505 ns  Iteration: 0  Instance: /maintb
+# Compile of Main.vhd was successful.
+vsim -gui work.maintb
+# End time: 19:06:52 on Dec 08,2024, Elapsed time: 0:03:08
+# Errors: 0, Warnings: 4
+# vsim -gui work.maintb 
+# Start time: 19:06:53 on Dec 08,2024
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.maintb(behavioral)
+# Loading work.main(behavioral)
+# Loading work.caesarchiper(behavioral)
+# Loading work.hillcipher(behavioral)
+add wave -position insertpoint sim:/maintb/*
+run -all
 # ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
 #    Time: 0 ps  Iteration: 0  Instance: /maintb/uut/caesar_inst
 # ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 0 ps  Iteration: 1  Instance: /maintb/uut/hill_inst
-# ** Failure: Karakter tidak cocok: input = H, decrypt = Z
-#    Time: 95 ns  Iteration: 3  Process: /maintb/verify_process File: D:/ima/SEM 3 BISMILLAH/psd babi/PA02-FinalProject-PSD/MainTB.vhd
-# Break in Process verify_process at D:/ima/SEM 3 BISMILLAH/psd babi/PA02-FinalProject-PSD/MainTB.vhd line 126
+#    Time: 0 ps  Iteration: 2  Instance: /maintb/uut/caesar_inst
+# ** Note: SKENARIO ENKRIPSI
+#    Time: 10 ns  Iteration: 0  Instance: /maintb
+# ** Note: Input written to file: hello
+#    Time: 10 ns  Iteration: 0  Instance: /maintb
+# ** Note: Reading Encrypted Output
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: m
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: l
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: w
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: w
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: x
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output matches expected data
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: SKENARIO DEKRIPSI
+#    Time: 265 ns  Iteration: 0  Instance: /maintb
+# ** Fatal: (vsim-3341) Cannot open file "decryptOutput.txt"; it is already open.
+#    Time: 275 ns  Iteration: 1  Process: /maintb/uut/state_machine File: D:/ima/psd/Main.vhd
+# Fatal error in Process state_machine at D:/ima/psd/Main.vhd line 113
+# 
+# HDL call sequence:
+# Stopped at D:/ima/psd/Main.vhd 113 Process state_machine
+# 
+# Compile of Main.vhd was successful.
+vsim -gui work.maintb
+# End time: 19:09:42 on Dec 08,2024, Elapsed time: 0:02:49
+# Errors: 1, Warnings: 4
+# vsim -gui work.maintb 
+# Start time: 19:09:42 on Dec 08,2024
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.maintb(behavioral)
+# Loading work.main(behavioral)
+# Loading work.caesarchiper(behavioral)
+# Loading work.hillcipher(behavioral)
+add wave -position insertpoint sim:/maintb/*
 run -all
-# ** Note: Verifikasi berhasil - Input dan Decrypt cocok
-#    Time: 95 ns  Iteration: 3  Instance: /maintb
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /maintb/uut/caesar_inst
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 2  Instance: /maintb/uut/caesar_inst
+# ** Note: SKENARIO ENKRIPSI
+#    Time: 10 ns  Iteration: 0  Instance: /maintb
+# ** Note: Input written to file: hello
+#    Time: 10 ns  Iteration: 0  Instance: /maintb
+# ** Note: Reading Encrypted Output
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: m
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: l
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: w
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: w
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: x
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output matches expected data
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: SKENARIO DEKRIPSI
+#    Time: 265 ns  Iteration: 0  Instance: /maintb
+# ** Fatal: (vsim-3341) Cannot open file "encryptOutput.txt"; it is already open.
+#    Time: 275 ns  Iteration: 1  Process: /maintb/uut/state_machine File: D:/ima/psd/Main.vhd
+# Fatal error in Process state_machine at D:/ima/psd/Main.vhd line 112
+# 
+# HDL call sequence:
+# Stopped at D:/ima/psd/Main.vhd 112 Process state_machine
+# 
+# Compile of Main.vhd was successful.
+vsim -gui work.maintb
+# End time: 19:16:54 on Dec 08,2024, Elapsed time: 0:07:12
+# Errors: 1, Warnings: 4
+# vsim -gui work.maintb 
+# Start time: 19:16:54 on Dec 08,2024
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.maintb(behavioral)
+# Loading work.main(behavioral)
+# Loading work.caesarchiper(behavioral)
+# Loading work.hillcipher(behavioral)
+run -all
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /maintb/uut/caesar_inst
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 2  Instance: /maintb/uut/caesar_inst
+# ** Note: SKENARIO ENKRIPSI
+#    Time: 10 ns  Iteration: 0  Instance: /maintb
+# ** Note: Input written to file: hello
+#    Time: 10 ns  Iteration: 0  Instance: /maintb
+# ** Note: Reading Encrypted Output
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: m
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: l
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: w
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: w
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: x
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output matches expected data
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: SKENARIO DEKRIPSI
+#    Time: 265 ns  Iteration: 0  Instance: /maintb
+# ** Fatal: (vsim-3341) Cannot open file "encryptOutput.txt"; it is already open.
+#    Time: 275 ns  Iteration: 1  Process: /maintb/uut/state_machine File: D:/ima/psd/Main.vhd
+# Fatal error in Process state_machine at D:/ima/psd/Main.vhd line 113
+# 
+# HDL call sequence:
+# Stopped at D:/ima/psd/Main.vhd 113 Process state_machine
+# 
+# Compile of Main.vhd was successful.
+vsim -gui work.maintb
+# End time: 19:19:21 on Dec 08,2024, Elapsed time: 0:02:27
+# Errors: 1, Warnings: 4
+# vsim -gui work.maintb 
+# Start time: 19:19:21 on Dec 08,2024
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.maintb(behavioral)
+# Loading work.main(behavioral)
+# Loading work.caesarchiper(behavioral)
+# Loading work.hillcipher(behavioral)
+run -all
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /maintb/uut/caesar_inst
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 2  Instance: /maintb/uut/caesar_inst
+# ** Note: SKENARIO ENKRIPSI
+#    Time: 10 ns  Iteration: 0  Instance: /maintb
+# ** Note: Input written to file: hello
+#    Time: 10 ns  Iteration: 0  Instance: /maintb
+# ** Note: Reading Encrypted Output
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: m
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: l
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: w
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: w
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: x
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output matches expected data
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: SKENARIO DEKRIPSI
+#    Time: 265 ns  Iteration: 0  Instance: /maintb
+# ** Fatal: (vsim-3341) Cannot open file "encryptOutput.txt"; it is already open.
+#    Time: 275 ns  Iteration: 1  Process: /maintb/uut/state_machine File: D:/ima/psd/Main.vhd
+# Fatal error in Process state_machine at D:/ima/psd/Main.vhd line 116
+# 
+# HDL call sequence:
+# Stopped at D:/ima/psd/Main.vhd 116 Process state_machine
+# 
+# Compile of Main.vhd failed with 8 errors.
+# Compile of Main.vhd was successful.
+vsim -gui work.maintb
+# End time: 19:26:42 on Dec 08,2024, Elapsed time: 0:07:21
+# Errors: 1, Warnings: 5
+# vsim -gui work.maintb 
+# Start time: 19:26:42 on Dec 08,2024
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.maintb(behavioral)
+# Loading work.main(behavioral)
+# Loading work.caesarchiper(behavioral)
+# Loading work.hillcipher(behavioral)
+run -all
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /maintb/uut/caesar_inst
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 2  Instance: /maintb/uut/caesar_inst
+# ** Note: SKENARIO ENKRIPSI
+#    Time: 10 ns  Iteration: 0  Instance: /maintb
+# ** Note: Input written to file: hello
+#    Time: 10 ns  Iteration: 0  Instance: /maintb
+# ** Note: Reading Encrypted Output
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: m
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: l
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: w
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: w
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: x
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output matches expected data
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: SKENARIO DEKRIPSI
+#    Time: 265 ns  Iteration: 0  Instance: /maintb
+# ** Fatal: (vsim-3341) Cannot open file "encryptOutput.txt"; it is already open.
+#    Time: 275 ns  Iteration: 1  Process: /maintb/uut/state_machine File: D:/ima/psd/Main.vhd
+# Fatal error in Process state_machine at D:/ima/psd/Main.vhd line 116
+# 
+# HDL call sequence:
+# Stopped at D:/ima/psd/Main.vhd 116 Process state_machine
+# 
+# Compile of MainTB.vhd was successful.
+vsim -gui work.maintb
+# End time: 19:29:27 on Dec 08,2024, Elapsed time: 0:02:45
+# Errors: 1, Warnings: 4
+# vsim -gui work.maintb 
+# Start time: 19:29:27 on Dec 08,2024
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.maintb(behavioral)
+# Loading work.main(behavioral)
+# Loading work.caesarchiper(behavioral)
+# Loading work.hillcipher(behavioral)
+run -all
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /maintb/uut/caesar_inst
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 2  Instance: /maintb/uut/caesar_inst
+# ** Note: SKENARIO ENKRIPSI
+#    Time: 10 ns  Iteration: 0  Instance: /maintb
+# ** Note: Input written to file: hello
+#    Time: 10 ns  Iteration: 0  Instance: /maintb
+# ** Note: Reading Encrypted Output
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: m
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: l
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: w
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: w
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: x
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output matches expected data
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: SKENARIO DEKRIPSI
+#    Time: 265 ns  Iteration: 0  Instance: /maintb
+# ** Fatal: (vsim-3341) Cannot open file "encryptOutput.txt"; it is already open.
+#    Time: 275 ns  Iteration: 1  Process: /maintb/uut/state_machine File: D:/ima/psd/Main.vhd
+# Fatal error in Process state_machine at D:/ima/psd/Main.vhd line 116
+# 
+# HDL call sequence:
+# Stopped at D:/ima/psd/Main.vhd 116 Process state_machine
+# 
 # Compile of MainTB.vhd was successful.
 vsim -gui work.main
-# End time: 07:55:30 on Dec 08,2024, Elapsed time: 0:13:55
-# Errors: 1, Warnings: 5
+# End time: 19:30:14 on Dec 08,2024, Elapsed time: 0:00:47
+# Errors: 1, Warnings: 4
 # vsim -gui work.main 
-# Start time: 07:55:30 on Dec 08,2024
+# Start time: 19:30:14 on Dec 08,2024
 # Loading std.standard
 # Loading std.textio(body)
 # Loading ieee.std_logic_1164(body)
 # Loading ieee.numeric_std(body)
 # Loading work.main(behavioral)
-# Loading work.caesarcipher(behavioral)
+# Loading work.caesarchiper(behavioral)
 # Loading work.hillcipher(behavioral)
 add wave -position insertpoint sim:/main/*
 force -freeze sim:/main/clk 1 0, 0 {50 ps} -r 100
+noforce sim:/main/rst
 force -freeze sim:/main/rst 0 0
 force -freeze sim:/main/mode 0 0
 force -freeze sim:/main/start 1 0
 run
 # ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 0 ps  Iteration: 0  Instance: /main/hill_inst
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
 #    Time: 0 ps  Iteration: 0  Instance: /main/caesar_inst
 # ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 100 ps  Iteration: 1  Instance: /main/hill_inst
+#    Time: 100 ps  Iteration: 1  Instance: /main/caesar_inst
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
 run
 run
 run
@@ -432,10 +548,6 @@ run
 run
 run
 run
-run
-run
-run
-force -freeze sim:/main/mode 0 0
 run
 run
 run
@@ -449,56 +561,706 @@ run
 run
 run
 # Compile of Main.vhd was successful.
-vsim -gui work.main
-# End time: 08:43:00 on Dec 08,2024, Elapsed time: 0:47:30
-# Errors: 0, Warnings: 5
-# vsim -gui work.main 
-# Start time: 08:43:00 on Dec 08,2024
+vsim -gui work.maintb
+# End time: 19:35:48 on Dec 08,2024, Elapsed time: 0:05:34
+# Errors: 0, Warnings: 4
+# vsim -gui work.maintb 
+# Start time: 19:35:48 on Dec 08,2024
 # Loading std.standard
 # Loading std.textio(body)
 # Loading ieee.std_logic_1164(body)
 # Loading ieee.numeric_std(body)
+# Loading work.maintb(behavioral)
 # Loading work.main(behavioral)
-# Loading work.caesarcipher(behavioral)
+# Loading work.caesarchiper(behavioral)
 # Loading work.hillcipher(behavioral)
-add wave -position insertpoint sim:/main/*
-force -freeze sim:/main/clk 1 0, 0 {50 ps} -r 100
-force -freeze sim:/main/rst 0 0
-force -freeze sim:/main/mode 0 0
-force -freeze sim:/main/start 1 0
-run
+run -all
 # ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 0 ps  Iteration: 0  Instance: /main/hill_inst
+#    Time: 0 ps  Iteration: 0  Instance: /maintb/uut/caesar_inst
 # ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 0 ps  Iteration: 0  Instance: /main/caesar_inst
-run
-run
-run
-run
-run
-run
-run
-run
-force -freeze sim:/main/mode 1 0
-run
-run
-run
-run
-run
-run
-run
+#    Time: 0 ps  Iteration: 2  Instance: /maintb/uut/caesar_inst
+# ** Note: SKENARIO ENKRIPSI
+#    Time: 10 ns  Iteration: 0  Instance: /maintb
+# ** Note: Input written to file: hello
+#    Time: 10 ns  Iteration: 0  Instance: /maintb
+# ** Fatal: (vsim-3332) Attempt to write to or flush an unopened file.
+#    Time: 95 ns  Iteration: 1  Process: /maintb/uut/state_machine File: D:/ima/psd/Main.vhd
+# Fatal error in Process state_machine at D:/ima/psd/Main.vhd line 148
+# 
+# HDL call sequence:
+# Stopped at D:/ima/psd/Main.vhd 148 Process state_machine
+# 
+# Compile of Main.vhd was successful.
+vsim -gui work.maintb
+# End time: 19:38:37 on Dec 08,2024, Elapsed time: 0:02:49
+# Errors: 1, Warnings: 4
+# vsim -gui work.maintb 
+# Start time: 19:38:37 on Dec 08,2024
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.maintb(behavioral)
+# Loading work.main(behavioral)
+# Loading work.caesarchiper(behavioral)
+# Loading work.hillcipher(behavioral)
+run -all
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /maintb/uut/caesar_inst
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 2  Instance: /maintb/uut/caesar_inst
+# ** Note: SKENARIO ENKRIPSI
+#    Time: 10 ns  Iteration: 0  Instance: /maintb
+# ** Note: Input written to file: hello
+#    Time: 10 ns  Iteration: 0  Instance: /maintb
+# ** Note: Reading Encrypted Output
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: m
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: l
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: w
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: w
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: x
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output matches expected data
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: SKENARIO DEKRIPSI
+#    Time: 265 ns  Iteration: 0  Instance: /maintb
+# ** Note: Reading Decrypted Output
+#    Time: 505 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: x
+#    Time: 505 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: x
+#    Time: 505 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: x
+#    Time: 505 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: x
+#    Time: 505 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: x
+#    Time: 505 ns  Iteration: 0  Instance: /maintb
+# ** Note: Got:      xxxxx
+#    Time: 505 ns  Iteration: 0  Instance: /maintb
+# Compile of Main.vhd was successful.
+vsim -gui work.maintb
+# End time: 19:39:43 on Dec 08,2024, Elapsed time: 0:01:06
+# Errors: 0, Warnings: 4
+# vsim -gui work.maintb 
+# Start time: 19:39:43 on Dec 08,2024
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.maintb(behavioral)
+# Loading work.main(behavioral)
+# Loading work.caesarchiper(behavioral)
+# Loading work.hillcipher(behavioral)
+run -all
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /maintb/uut/caesar_inst
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 2  Instance: /maintb/uut/caesar_inst
+# ** Note: SKENARIO ENKRIPSI
+#    Time: 10 ns  Iteration: 0  Instance: /maintb
+# ** Note: Input written to file: hello
+#    Time: 10 ns  Iteration: 0  Instance: /maintb
+# ** Note: Reading Encrypted Output
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: m
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: l
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: w
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: w
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: x
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output matches expected data
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: SKENARIO DEKRIPSI
+#    Time: 265 ns  Iteration: 0  Instance: /maintb
+# ** Fatal: (vsim-3341) Cannot open file "decryptOutput.txt"; it is already open.
+#    Time: 275 ns  Iteration: 1  Process: /maintb/uut/state_machine File: D:/ima/psd/Main.vhd
+# Fatal error in Process state_machine at D:/ima/psd/Main.vhd line 113
+# 
+# HDL call sequence:
+# Stopped at D:/ima/psd/Main.vhd 113 Process state_machine
+# 
+# Compile of Main.vhd was successful.
+vsim -gui work.maintb
+# End time: 19:40:43 on Dec 08,2024, Elapsed time: 0:01:00
+# Errors: 1, Warnings: 4
+# vsim -gui work.maintb 
+# Start time: 19:40:43 on Dec 08,2024
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.maintb(behavioral)
+# Loading work.main(behavioral)
+# Loading work.caesarchiper(behavioral)
+# Loading work.hillcipher(behavioral)
+run -all
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /maintb/uut/caesar_inst
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 2  Instance: /maintb/uut/caesar_inst
+# ** Note: SKENARIO ENKRIPSI
+#    Time: 10 ns  Iteration: 0  Instance: /maintb
+# ** Note: Input written to file: hello
+#    Time: 10 ns  Iteration: 0  Instance: /maintb
+# ** Note: Reading Encrypted Output
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: m
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: l
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: w
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: w
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: x
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output matches expected data
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: SKENARIO DEKRIPSI
+#    Time: 265 ns  Iteration: 0  Instance: /maintb
+# ** Fatal: (vsim-3341) Cannot open file "encryptOutput.txt"; it is already open.
+#    Time: 275 ns  Iteration: 1  Process: /maintb/uut/state_machine File: D:/ima/psd/Main.vhd
+# Fatal error in Process state_machine at D:/ima/psd/Main.vhd line 112
+# 
+# HDL call sequence:
+# Stopped at D:/ima/psd/Main.vhd 112 Process state_machine
+# 
+# Compile of Main.vhd was successful.
+vsim -gui work.maintb
+# End time: 20:40:59 on Dec 08,2024, Elapsed time: 1:00:16
+# Errors: 1, Warnings: 4
+# vsim -gui work.maintb 
+# Start time: 20:40:59 on Dec 08,2024
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.maintb(behavioral)
+# Loading work.main(behavioral)
+run -all
+# ** Note: SKENARIO ENKRIPSI
+#    Time: 10 ns  Iteration: 0  Instance: /maintb
+# ** Note: Input written to file: hello
+#    Time: 10 ns  Iteration: 0  Instance: /maintb
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 45 ns  Iteration: 1  Instance: /maintb/uut
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 75 ns  Iteration: 1  Instance: /maintb/uut
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 105 ns  Iteration: 1  Instance: /maintb/uut
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 135 ns  Iteration: 1  Instance: /maintb/uut
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 165 ns  Iteration: 1  Instance: /maintb/uut
+# ** Note: Reading Encrypted Output
+#    Time: 205 ns  Iteration: 0  Instance: /maintb
+# ** Note: Got:      
+#    Time: 205 ns  Iteration: 0  Instance: /maintb
+# ** Note: SKENARIO DEKRIPSI
+#    Time: 215 ns  Iteration: 0  Instance: /maintb
+# ** Note: Reading Decrypted Output
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Got:      
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# Compile of Main.vhd failed with 2 errors.
+# Compile of Main.vhd failed with 4 errors.
+# Compile of Main.vhd was successful.
+vsim -gui work.maintb
+# End time: 20:48:11 on Dec 08,2024, Elapsed time: 0:07:12
+# Errors: 0, Warnings: 9
+# vsim -gui work.maintb 
+# Start time: 20:48:11 on Dec 08,2024
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.maintb(behavioral)
+# Loading work.main(behavioral)
+# Loading work.hillcipher(behavioral)
+# ** Warning: (vsim-3473) Component instance "caesar_inst : caesarCipher" is not bound.
+#    Time: 0 ps  Iteration: 0  Instance: /maintb/uut File: D:/ima/psd/Main.vhd
+run -all
+# ** Note: SKENARIO ENKRIPSI
+#    Time: 10 ns  Iteration: 0  Instance: /maintb
+# ** Note: Input written to file: hello
+#    Time: 10 ns  Iteration: 0  Instance: /maintb
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 65 ns  Iteration: 1  Instance: /maintb/uut
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 105 ns  Iteration: 1  Instance: /maintb/uut
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 145 ns  Iteration: 1  Instance: /maintb/uut
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 185 ns  Iteration: 1  Instance: /maintb/uut
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 225 ns  Iteration: 1  Instance: /maintb/uut
+# ** Note: Reading Encrypted Output
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: 
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: 
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: 
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: 
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: 
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Got:      
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: SKENARIO DEKRIPSI
+#    Time: 265 ns  Iteration: 0  Instance: /maintb
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 315 ns  Iteration: 1  Instance: /maintb/uut
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 355 ns  Iteration: 1  Instance: /maintb/uut
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 395 ns  Iteration: 1  Instance: /maintb/uut
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 435 ns  Iteration: 1  Instance: /maintb/uut
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 475 ns  Iteration: 1  Instance: /maintb/uut
+# ** Note: Reading Decrypted Output
+#    Time: 505 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: 
+#    Time: 505 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: 
+#    Time: 505 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: 
+#    Time: 505 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: 
+#    Time: 505 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: 
+#    Time: 505 ns  Iteration: 0  Instance: /maintb
+# ** Note: Got:      
+#    Time: 505 ns  Iteration: 0  Instance: /maintb
+# Compile of Main.vhd was successful.
 # Load canceled
+vsim -gui work.maintb
+# End time: 20:52:41 on Dec 08,2024, Elapsed time: 0:04:30
+# Errors: 0, Warnings: 13
+# vsim -gui work.maintb 
+# Start time: 20:52:41 on Dec 08,2024
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.maintb(behavioral)
+# Loading work.main(behavioral)
+# Loading work.caesarchiper(behavioral)
+# Loading work.hillcipher(behavioral)
+run -all
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /maintb/uut/caesar_inst
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 2  Instance: /maintb/uut/caesar_inst
+# ** Note: SKENARIO ENKRIPSI
+#    Time: 10 ns  Iteration: 0  Instance: /maintb
+# ** Note: Input written to file: hello
+#    Time: 10 ns  Iteration: 0  Instance: /maintb
+# ** Note: Reading Encrypted Output
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: m
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: l
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: w
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: w
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: x
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output matches expected data
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: SKENARIO DEKRIPSI
+#    Time: 265 ns  Iteration: 0  Instance: /maintb
+# ** Fatal: (vsim-3341) Cannot open file "encryptOutput.txt"; it is already open.
+#    Time: 275 ns  Iteration: 1  Process: /maintb/uut/state_machine File: D:/ima/psd/Main.vhd
+# Fatal error in Process state_machine at D:/ima/psd/Main.vhd line 112
+# 
+# HDL call sequence:
+# Stopped at D:/ima/psd/Main.vhd 112 Process state_machine
+# 
+# Compile of Main.vhd was successful.
+vsim -gui work.maintb
+# End time: 20:57:31 on Dec 08,2024, Elapsed time: 0:04:50
+# Errors: 1, Warnings: 4
+# vsim -gui work.maintb 
+# Start time: 20:57:31 on Dec 08,2024
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.maintb(behavioral)
+# Loading work.main(behavioral)
+# Loading work.hillcipher(behavioral)
+# ** Warning: (vsim-3473) Component instance "caesar_inst : caesarCipher" is not bound.
+#    Time: 0 ps  Iteration: 0  Instance: /maintb/uut File: D:/ima/psd/Main.vhd
+run -all
+# ** Note: SKENARIO ENKRIPSI
+#    Time: 10 ns  Iteration: 0  Instance: /maintb
+# ** Note: Input written to file: hello
+#    Time: 10 ns  Iteration: 0  Instance: /maintb
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 45 ns  Iteration: 1  Instance: /maintb/uut
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 65 ns  Iteration: 1  Instance: /maintb/uut
+# ** Note: Reading Encrypted Output
+#    Time: 185 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: 
+#    Time: 185 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: l
+#    Time: 185 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: k
+#    Time: 185 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: v
+#    Time: 185 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: v
+#    Time: 185 ns  Iteration: 0  Instance: /maintb
+# ** Note: Got:      
+#    Time: 185 ns  Iteration: 0  Instance: /maintb
+# ** Note: SKENARIO DEKRIPSI
+#    Time: 195 ns  Iteration: 0  Instance: /maintb
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 235 ns  Iteration: 1  Instance: /maintb/uut
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 265 ns  Iteration: 1  Instance: /maintb/uut
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 295 ns  Iteration: 1  Instance: /maintb/uut
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 325 ns  Iteration: 1  Instance: /maintb/uut
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 355 ns  Iteration: 1  Instance: /maintb/uut
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 385 ns  Iteration: 1  Instance: /maintb/uut
+# ** Note: Reading Decrypted Output
+#    Time: 405 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: 
+#    Time: 405 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: 
+#    Time: 405 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: 
+#    Time: 405 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: 
+#    Time: 405 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: 
+#    Time: 405 ns  Iteration: 0  Instance: /maintb
+# ** Note: Got:      
+#    Time: 405 ns  Iteration: 0  Instance: /maintb
+# Compile of Main.vhd was successful.
+vsim -gui work.maintb
+# End time: 21:02:22 on Dec 08,2024, Elapsed time: 0:04:51
+# Errors: 0, Warnings: 11
+# vsim -gui work.maintb 
+# Start time: 21:02:22 on Dec 08,2024
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.maintb(behavioral)
+# Loading work.main(behavioral)
+# Loading work.caesarchiper(behavioral)
+# Loading work.hillcipher(behavioral)
+run -all
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /maintb/uut/caesar_inst
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 2  Instance: /maintb/uut/caesar_inst
+# ** Note: SKENARIO ENKRIPSI
+#    Time: 10 ns  Iteration: 0  Instance: /maintb
+# ** Note: Input written to file: hello
+#    Time: 10 ns  Iteration: 0  Instance: /maintb
+# ** Note: Reading Encrypted Output
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: m
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: l
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: w
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: w
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: x
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output matches expected data
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: SKENARIO DEKRIPSI
+#    Time: 265 ns  Iteration: 0  Instance: /maintb
+# ** Fatal: (vsim-3340) Attempt to call ENDFILE on an unopened file.
+#    Time: 275 ns  Iteration: 1  Process: /maintb/uut/state_machine File: D:/ima/psd/Main.vhd
+# Fatal error in Process state_machine at D:/ima/psd/Main.vhd line 112
+# 
+# HDL call sequence:
+# Stopped at D:/ima/psd/Main.vhd 112 Process state_machine
+# 
+# Compile of Main.vhd was successful.
+vsim -gui work.maintb
+# End time: 21:04:31 on Dec 08,2024, Elapsed time: 0:02:09
+# Errors: 1, Warnings: 4
+# vsim -gui work.maintb 
+# Start time: 21:04:31 on Dec 08,2024
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.maintb(behavioral)
+# Loading work.main(behavioral)
+# Loading work.caesarchiper(behavioral)
+# Loading work.hillcipher(behavioral)
+# Compile of Main.vhd was successful.
+vsim -gui work.maintb
+# End time: 21:07:24 on Dec 08,2024, Elapsed time: 0:02:53
+# Errors: 0, Warnings: 2
+# vsim -gui work.maintb 
+# Start time: 21:07:24 on Dec 08,2024
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.maintb(behavioral)
+# Loading work.main(behavioral)
+# Loading work.caesarchiper(behavioral)
+# Loading work.hillcipher(behavioral)
+run -all
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /maintb/uut/caesar_inst
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 2  Instance: /maintb/uut/caesar_inst
+# ** Note: SKENARIO ENKRIPSI
+#    Time: 10 ns  Iteration: 0  Instance: /maintb
+# ** Note: Input written to file: hello
+#    Time: 10 ns  Iteration: 0  Instance: /maintb
+# ** Note: Reading Encrypted Output
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: m
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: l
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: w
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: w
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: x
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output matches expected data
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: SKENARIO DEKRIPSI
+#    Time: 265 ns  Iteration: 0  Instance: /maintb
+# ** Fatal: (vsim-3341) Cannot open file "encryptOutput.txt"; it is already open.
+#    Time: 275 ns  Iteration: 1  Process: /maintb/uut/state_machine File: D:/ima/psd/Main.vhd
+# Fatal error in Process state_machine at D:/ima/psd/Main.vhd line 115
+# 
+# HDL call sequence:
+# Stopped at D:/ima/psd/Main.vhd 115 Process state_machine
+# 
+# Compile of Main.vhd was successful.
+vsim -gui work.maintb
+# End time: 21:17:18 on Dec 08,2024, Elapsed time: 0:09:54
+# Errors: 1, Warnings: 4
+# vsim -gui work.maintb 
+# Start time: 21:17:18 on Dec 08,2024
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.maintb(behavioral)
+# Loading work.main(behavioral)
+# Loading work.caesarchiper(behavioral)
+# Loading work.hillcipher(behavioral)
+run -all
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /maintb/uut/caesar_inst
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 2  Instance: /maintb/uut/caesar_inst
+# ** Note: SKENARIO ENKRIPSI
+#    Time: 10 ns  Iteration: 0  Instance: /maintb
+# ** Note: Input written to file: hello
+#    Time: 10 ns  Iteration: 0  Instance: /maintb
+# ** Note: Reading Encrypted Output
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: m
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: l
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: w
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: w
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: x
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output matches expected data
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: SKENARIO DEKRIPSI
+#    Time: 265 ns  Iteration: 0  Instance: /maintb
+# ** Fatal: (vsim-3332) Attempt to write to or flush an unopened file.
+#    Time: 295 ns  Iteration: 1  Process: /maintb/uut/state_machine File: D:/ima/psd/Main.vhd
+# Fatal error in Process state_machine at D:/ima/psd/Main.vhd line 139
+# 
+# HDL call sequence:
+# Stopped at D:/ima/psd/Main.vhd 139 Process state_machine
+# 
+run -all
+# Cannot continue because of fatal error.
+# HDL call sequence:
+# Stopped at D:/ima/psd/Main.vhd 139 Process state_machine
+# 
+run -all
+# Cannot continue because of fatal error.
+# HDL call sequence:
+# Stopped at D:/ima/psd/Main.vhd 139 Process state_machine
+# 
+# Compile of Main.vhd was successful.
+run -all
+# Cannot continue because of fatal error.
+# HDL call sequence:
+# Stopped at D:/ima/psd/Main.vhd 139 Process state_machine
+# 
+# Compile of Main.vhd was successful.
+vsim -gui work.maintb
+# End time: 21:38:53 on Dec 08,2024, Elapsed time: 0:21:35
+# Errors: 1, Warnings: 5
+# vsim -gui work.maintb 
+# Start time: 21:38:53 on Dec 08,2024
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.maintb(behavioral)
+# Loading work.main(behavioral)
+# Loading work.caesarchiper(behavioral)
+# Loading work.hillcipher(behavioral)
+run -all
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /maintb/uut/caesar_inst
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 2  Instance: /maintb/uut/caesar_inst
+# ** Note: SKENARIO ENKRIPSI
+#    Time: 10 ns  Iteration: 0  Instance: /maintb
+# ** Note: Input written to file: hello
+#    Time: 10 ns  Iteration: 0  Instance: /maintb
+# ** Note: Reading Encrypted Output
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: m
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: l
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: w
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: w
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: x
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output matches expected data
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: SKENARIO DEKRIPSI
+#    Time: 265 ns  Iteration: 0  Instance: /maintb
+# ** Fatal: (vsim-3341) Cannot open file "encryptOutput.txt"; it is already open.
+#    Time: 275 ns  Iteration: 1  Process: /maintb/uut/state_machine File: D:/ima/psd/Main.vhd
+# Fatal error in Process state_machine at D:/ima/psd/Main.vhd line 112
+# 
+# HDL call sequence:
+# Stopped at D:/ima/psd/Main.vhd 112 Process state_machine
+# 
+# Compile of Main.vhd was successful.
+vsim -gui work.maintb
+# End time: 21:44:20 on Dec 08,2024, Elapsed time: 0:05:27
+# Errors: 1, Warnings: 4
+# vsim -gui work.maintb 
+# Start time: 21:44:20 on Dec 08,2024
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.maintb(behavioral)
+# Loading work.main(behavioral)
+# Loading work.caesarchiper(behavioral)
+# Loading work.hillcipher(behavioral)
+run -all
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /maintb/uut/caesar_inst
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 2  Instance: /maintb/uut/caesar_inst
+# ** Note: SKENARIO ENKRIPSI
+#    Time: 10 ns  Iteration: 0  Instance: /maintb
+# ** Note: Input written to file: hello
+#    Time: 10 ns  Iteration: 0  Instance: /maintb
+# ** Note: Reading Encrypted Output
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: m
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: l
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: w
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: w
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output Char: x
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Output matches expected data
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: SKENARIO DEKRIPSI
+#    Time: 265 ns  Iteration: 0  Instance: /maintb
+# ** Fatal: (vsim-3332) Attempt to write to or flush an unopened file.
+#    Time: 295 ns  Iteration: 1  Process: /maintb/uut/state_machine File: D:/ima/psd/Main.vhd
+# Fatal error in Process state_machine at D:/ima/psd/Main.vhd line 137
+# 
+# HDL call sequence:
+# Stopped at D:/ima/psd/Main.vhd 137 Process state_machine
+# 
+# Compile of Main.vhd was successful.
+vsim -gui work.maintb
+# End time: 21:47:21 on Dec 08,2024, Elapsed time: 0:03:01
+# Errors: 1, Warnings: 4
+# vsim -gui work.maintb 
+# Start time: 21:47:21 on Dec 08,2024
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.maintb(behavioral)
+# Loading work.main(behavioral)
+# Loading work.caesarchiper(behavioral)
+# Loading work.hillcipher(behavioral)
+run -all
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /maintb/uut/caesar_inst
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 2  Instance: /maintb/uut/caesar_inst
+# ** Note: SKENARIO ENKRIPSI
+#    Time: 10 ns  Iteration: 0  Instance: /maintb
+# ** Note: Input written to file: hello
+#    Time: 10 ns  Iteration: 0  Instance: /maintb
+# ** Note: Reading Encrypted Output
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: Got:      
+#    Time: 255 ns  Iteration: 0  Instance: /maintb
+# ** Note: SKENARIO DEKRIPSI
+#    Time: 265 ns  Iteration: 0  Instance: /maintb
+# ** Note: Reading Decrypted Output
+#    Time: 305 ns  Iteration: 0  Instance: /maintb
+# ** Note: Got:      
+#    Time: 305 ns  Iteration: 0  Instance: /maintb
 vsim -gui work.main
-# End time: 09:02:11 on Dec 08,2024, Elapsed time: 0:19:11
+# End time: 21:48:38 on Dec 08,2024, Elapsed time: 0:01:17
 # Errors: 0, Warnings: 3
 # vsim -gui work.main 
-# Start time: 09:02:11 on Dec 08,2024
+# Start time: 21:48:38 on Dec 08,2024
 # Loading std.standard
 # Loading std.textio(body)
 # Loading ieee.std_logic_1164(body)
 # Loading ieee.numeric_std(body)
 # Loading work.main(behavioral)
-# Loading work.caesarcipher(behavioral)
+# Loading work.caesarchiper(behavioral)
 # Loading work.hillcipher(behavioral)
 add wave -position insertpoint sim:/main/*
 force -freeze sim:/main/clk 1 0, 0 {50 ps} -r 100
@@ -507,581 +1269,9 @@ force -freeze sim:/main/mode 0 0
 force -freeze sim:/main/start 1 0
 run
 # ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 0 ps  Iteration: 0  Instance: /main/hill_inst
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 0 ps  Iteration: 0  Instance: /main/caesar_inst
-run
-run
-run
-run
-run
-run
-run
-run
-force -freeze sim:/main/rst 1 0
-force -freeze sim:/main/start 0 0
-run
-run
-force -freeze sim:/main/rst 0 0
-force -freeze sim:/main/rst 0 0
-force -freeze sim:/main/start 1 0
-force -freeze sim:/main/mode 1 0
-run
-run
-run
-run
-run
-run
-run
-run
-# Compile of caesarCipher.vhd was successful.
-# Compile of hillCipher.vhd failed with 3 errors.
-# Compile of Main.vhd failed with 9 errors.
-# Compile of MainTB.vhd was successful.
-# 4 compiles, 2 failed with 12 errors.
-# Compile of caesarCipher.vhd was successful.
-# Compile of hillCipher.vhd failed with 3 errors.
-# Compile of Main.vhd failed with 9 errors.
-# Compile of MainTB.vhd was successful.
-# 4 compiles, 2 failed with 12 errors.
-# Compile of caesarCipher.vhd was successful.
-# Compile of hillCipher.vhd failed with 3 errors.
-# Compile of Main.vhd failed with 9 errors.
-# Compile of MainTB.vhd was successful.
-# 4 compiles, 2 failed with 12 errors.
-# Compile of caesarCipher.vhd was successful.
-# Compile of hillCipher.vhd was successful.
-# Compile of Main.vhd failed with 9 errors.
-# Compile of MainTB.vhd was successful.
-# 4 compiles, 1 failed with 9 errors.
-# Compile of caesarCipher.vhd was successful.
-# Compile of hillCipher.vhd was successful.
-# Compile of Main.vhd was successful.
-# Compile of MainTB.vhd was successful.
-# 4 compiles, 0 failed with no errors.
-vsim -gui work.main
-# End time: 10:27:19 on Dec 08,2024, Elapsed time: 1:25:08
-# Errors: 0, Warnings: 8
-# vsim -gui work.main 
-# Start time: 10:27:19 on Dec 08,2024
-# Loading std.standard
-# Loading std.textio(body)
-# Loading ieee.std_logic_1164(body)
-# Loading ieee.numeric_std(body)
-# Loading work.main(behavioral)
-# Loading work.hillcipher(behavioral)
-# Loading work.caesarcipher(behavioral)
-add wave -position insertpoint sim:/main/*
-force -freeze sim:/main/clk 1 0, 0 {50 ps} -r 100
-force -freeze sim:/main/rst 0 0
-force -freeze sim:/main/mode 0 0
-force -freeze sim:/main/start 1 0
-force -freeze sim:/main/clk 1 0, 0 {50 ps} -r 100
-run
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
 #    Time: 0 ps  Iteration: 0  Instance: /main/caesar_inst
 # ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 0 ps  Iteration: 0  Instance: /main/hill_inst
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-restart
-# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
-force -freeze sim:/main/clk 1 0, 0 {50 ps} -r 100
-force -freeze sim:/main/rst 0 0
-force -freeze sim:/main/mode 0 0
-force -freeze sim:/main/start 1 0
-run
-# GetModuleFileName: The specified module could not be found.
-# 
-# 
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 0 ps  Iteration: 0  Instance: /main/caesar_inst
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 0 ps  Iteration: 0  Instance: /main/hill_inst
-run
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 200 ps  Iteration: 1  Instance: /main/hill_inst
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-force -freeze sim:/main/rst 1 0
-force -freeze sim:/main/mode 1 0
-force -freeze sim:/main/start 0 0
-run
-run
-run
-force -freeze sim:/main/rst 0 0
-force -freeze sim:/main/mode 1 0
-force -freeze sim:/main/start 1 0
-run
-run
-# ** Fatal: (vsim-3341) Cannot open file "encryptOutput.txt"; it is already open.
-#    Time: 4600 ps  Iteration: 0  Process: /main/state_machine File: D:/ima/SEM 3 BISMILLAH/psd babi/PA02-FinalProject-PSD/Main.vhd
-# Fatal error in Process state_machine at D:/ima/SEM 3 BISMILLAH/psd babi/PA02-FinalProject-PSD/Main.vhd line 97
-# 
-# HDL call sequence:
-# Stopped at D:/ima/SEM 3 BISMILLAH/psd babi/PA02-FinalProject-PSD/Main.vhd 97 Process state_machine
-# 
-run
-# Cannot continue because of fatal error.
-# HDL call sequence:
-# Stopped at D:/ima/SEM 3 BISMILLAH/psd babi/PA02-FinalProject-PSD/Main.vhd 97 Process state_machine
-# 
-run
-# Cannot continue because of fatal error.
-# HDL call sequence:
-# Stopped at D:/ima/SEM 3 BISMILLAH/psd babi/PA02-FinalProject-PSD/Main.vhd 97 Process state_machine
-# 
-run
-# Cannot continue because of fatal error.
-# HDL call sequence:
-# Stopped at D:/ima/SEM 3 BISMILLAH/psd babi/PA02-FinalProject-PSD/Main.vhd 97 Process state_machine
-# 
-run
-# Cannot continue because of fatal error.
-# HDL call sequence:
-# Stopped at D:/ima/SEM 3 BISMILLAH/psd babi/PA02-FinalProject-PSD/Main.vhd 97 Process state_machine
-# 
-run
-# Cannot continue because of fatal error.
-# HDL call sequence:
-# Stopped at D:/ima/SEM 3 BISMILLAH/psd babi/PA02-FinalProject-PSD/Main.vhd 97 Process state_machine
-# 
-run
-# Cannot continue because of fatal error.
-# HDL call sequence:
-# Stopped at D:/ima/SEM 3 BISMILLAH/psd babi/PA02-FinalProject-PSD/Main.vhd 97 Process state_machine
-# 
-run
-# Cannot continue because of fatal error.
-# HDL call sequence:
-# Stopped at D:/ima/SEM 3 BISMILLAH/psd babi/PA02-FinalProject-PSD/Main.vhd 97 Process state_machine
-# 
-run
-# Cannot continue because of fatal error.
-# HDL call sequence:
-# Stopped at D:/ima/SEM 3 BISMILLAH/psd babi/PA02-FinalProject-PSD/Main.vhd 97 Process state_machine
-# 
-run
-# Cannot continue because of fatal error.
-# HDL call sequence:
-# Stopped at D:/ima/SEM 3 BISMILLAH/psd babi/PA02-FinalProject-PSD/Main.vhd 97 Process state_machine
-# 
-run
-# Cannot continue because of fatal error.
-# HDL call sequence:
-# Stopped at D:/ima/SEM 3 BISMILLAH/psd babi/PA02-FinalProject-PSD/Main.vhd 97 Process state_machine
-# 
-run
-# Cannot continue because of fatal error.
-# HDL call sequence:
-# Stopped at D:/ima/SEM 3 BISMILLAH/psd babi/PA02-FinalProject-PSD/Main.vhd 97 Process state_machine
-# 
-run
-# Cannot continue because of fatal error.
-# HDL call sequence:
-# Stopped at D:/ima/SEM 3 BISMILLAH/psd babi/PA02-FinalProject-PSD/Main.vhd 97 Process state_machine
-# 
-run
-# Cannot continue because of fatal error.
-# HDL call sequence:
-# Stopped at D:/ima/SEM 3 BISMILLAH/psd babi/PA02-FinalProject-PSD/Main.vhd 97 Process state_machine
-# 
-run
-# Cannot continue because of fatal error.
-# HDL call sequence:
-# Stopped at D:/ima/SEM 3 BISMILLAH/psd babi/PA02-FinalProject-PSD/Main.vhd 97 Process state_machine
-# 
-run
-# Cannot continue because of fatal error.
-# HDL call sequence:
-# Stopped at D:/ima/SEM 3 BISMILLAH/psd babi/PA02-FinalProject-PSD/Main.vhd 97 Process state_machine
-# 
-run
-# Cannot continue because of fatal error.
-# HDL call sequence:
-# Stopped at D:/ima/SEM 3 BISMILLAH/psd babi/PA02-FinalProject-PSD/Main.vhd 97 Process state_machine
-# 
-restart
-# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
-force -freeze sim:/main/clk 1 0, 0 {50 ps} -r 100
-force -freeze sim:/main/rst 0 0
-force -freeze sim:/main/mode 0 0
-force -freeze sim:/main/start 1 0
-run
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 0 ps  Iteration: 0  Instance: /main/caesar_inst
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 0 ps  Iteration: 0  Instance: /main/hill_inst
-run
-# GetModuleFileName: The specified module could not be found.
-# 
-# 
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 200 ps  Iteration: 1  Instance: /main/hill_inst
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-restart
-# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
-force -freeze sim:/main/clk 1 0, 0 {50 ps} -r 100
-force -freeze sim:/main/rst 0 0
-force -freeze sim:/main/mode 0 0
-force -freeze sim:/main/start 1 0
-run
-# GetModuleFileName: The specified module could not be found.
-# 
-# 
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 0 ps  Iteration: 0  Instance: /main/caesar_inst
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 0 ps  Iteration: 0  Instance: /main/hill_inst
-run
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 200 ps  Iteration: 1  Instance: /main/hill_inst
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-force -freeze sim:/main/mode 1 0
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run -all
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-# Compile of Main.vhd failed with 5 errors.
-# Compile of caesarCipher.vhd was successful.
-# Compile of hillCipher.vhd was successful.
-# Compile of Main.vhd was successful.
-# Compile of MainTB.vhd was successful.
-# 4 compiles, 0 failed with no errors.
-vsim -gui work.main
-# End time: 11:18:47 on Dec 08,2024, Elapsed time: 0:51:28
-# Errors: 0, Warnings: 6
-# vsim -gui work.main 
-# Start time: 11:18:47 on Dec 08,2024
-# Loading std.standard
-# Loading std.textio(body)
-# Loading ieee.std_logic_1164(body)
-# Loading ieee.numeric_std(body)
-# Loading work.main(behavioral)
-# Loading work.hillcipher(behavioral)
-# Loading work.caesarcipher(behavioral)
-add wave -position insertpoint sim:/main/*
-force -freeze sim:/main/clk 1 0, 0 {50 ps} -r 100
-force -freeze sim:/main/rst 0 0
-force -freeze sim:/main/mode 0 0
-force -freeze sim:/main/start 1 0
-run
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 0 ps  Iteration: 0  Instance: /main/caesar_inst
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 0 ps  Iteration: 0  Instance: /main/hill_inst
-run
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 200 ps  Iteration: 1  Instance: /main/hill_inst
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-force -freeze sim:/main/mode 1 0
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-force -freeze sim:/main/mode 0 0
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-force -freeze sim:/main/mode 1 0
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-# WARNING: No extended dataflow license exists
-# Compile of caesarCipher.vhd was successful.
-# Compile of hillCipher.vhd was successful.
-# Compile of Main.vhd was successful.
-# Compile of MainTB.vhd was successful.
-# 4 compiles, 0 failed with no errors.
-vsim -gui work.main
-# End time: 11:46:51 on Dec 08,2024, Elapsed time: 0:28:04
-# Errors: 0, Warnings: 5
-# vsim -gui work.main 
-# Start time: 11:46:51 on Dec 08,2024
-# Loading std.standard
-# Loading std.textio(body)
-# Loading ieee.std_logic_1164(body)
-# Loading ieee.numeric_std(body)
-# Loading work.main(behavioral)
-# Loading work.hillcipher(behavioral)
-# Loading work.caesarcipher(behavioral)
-add wave -position insertpoint sim:/main/*
-force -freeze sim:/main/clk 1 0, 0 {50 ps} -r 100
-force -freeze sim:/main/rst 0 0
-force -freeze sim:/main/mode 0 0
-force -freeze sim:/main/start 1 0
-run
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 0 ps  Iteration: 0  Instance: /main/caesar_inst
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 0 ps  Iteration: 0  Instance: /main/hill_inst
-run
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 200 ps  Iteration: 1  Instance: /main/hill_inst
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-force -freeze sim:/main/mode 1 0
-run
-run
-run
-run
-run
-run
-run
-run
-run
-# Compile of hillCipher.vhd was successful.
-vsim -gui work.main
-# End time: 12:47:58 on Dec 08,2024, Elapsed time: 1:01:07
-# Errors: 0, Warnings: 5
-# vsim -gui work.main 
-# Start time: 12:47:58 on Dec 08,2024
-# Loading std.standard
-# Loading std.textio(body)
-# Loading ieee.std_logic_1164(body)
-# Loading ieee.numeric_std(body)
-# Loading work.main(behavioral)
-# Loading work.hillcipher(behavioral)
-# ** Fatal: (vsim-3817) Port "clk" of entity "hillcipher" is not in the component being instantiated.
-#    Time: 0 ps  Iteration: 0  Instance: /main/hill_inst File: D:/ima/SEM 3 BISMILLAH/psd babi/PA02-FinalProject-PSD/hillCipher.vhd Line: 7
-# FATAL ERROR while loading design
-# Error loading design
-# End time: 12:47:59 on Dec 08,2024, Elapsed time: 0:00:01
-# Errors: 1, Warnings: 1
-# Compile of hillCipher.vhd was successful.
-vsim -gui work.main
-# vsim -gui work.main 
-# Start time: 12:56:39 on Dec 08,2024
-# Loading std.standard
-# Loading std.textio(body)
-# Loading ieee.std_logic_1164(body)
-# Loading ieee.numeric_std(body)
-# Loading work.main(behavioral)
-# Loading work.hillcipher(behavioral)
-# Loading work.caesarcipher(behavioral)
-add wave -position insertpoint sim:/main/*
-force -freeze sim:/main/clk 1 0, 0 {50 ps} -r 100
-force -freeze sim:/main/rst 0 0
-force -freeze sim:/main/mode 0 0
-force -freeze sim:/main/start 1 0
-run
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 0 ps  Iteration: 0  Instance: /main/caesar_inst
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
+#    Time: 100 ps  Iteration: 1  Instance: /main/caesar_inst
 run
 run
 run
@@ -1116,37 +1306,3 @@ run
 run
 run
 run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-# Compile of MainTB.vhd was successful.
-vsim -gui work.maintb
-# End time: 13:14:08 on Dec 08,2024, Elapsed time: 0:17:29
-# Errors: 0, Warnings: 4
-# vsim -gui work.maintb 
-# Start time: 13:14:08 on Dec 08,2024
-# Loading std.standard
-# Loading std.textio(body)
-# Loading ieee.std_logic_1164(body)
-# Loading ieee.numeric_std(body)
-# Loading work.maintb(behavioral)
-# Loading work.main(behavioral)
-# Loading work.hillcipher(behavioral)
-# Loading work.caesarcipher(behavioral)
-add wave -position insertpoint sim:/maintb/*
-run -all
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 0 ps  Iteration: 0  Instance: /maintb/uut/caesar_inst
-# Compile of MainTB.vhd failed with 4 errors.
