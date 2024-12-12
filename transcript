@@ -158,3 +158,163 @@ vsim -gui work.cipher_combined_tb
 # WARNING: No extended dataflow license exists
 add wave -position insertpoint sim:/cipher_combined_tb/*
 run -all
+quit -sim
+# End time: 01:48:08 on Dec 13,2024, Elapsed time: 0:07:50
+# Errors: 0, Warnings: 2
+# Compile of cipher_combined_tb.vhd failed with 6 errors.
+# Compile of cipher_combined_tb.vhd failed with 5 errors.
+# Compile of cipher_combined_tb.vhd was successful.
+vsim -gui work.cipher_combined_tb
+# vsim -gui work.cipher_combined_tb 
+# Start time: 01:52:48 on Dec 13,2024
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading ieee.std_logic_textio(body)
+# Loading work.cipher_combined_tb(behavior)
+# Loading work.cipher_combined(behavioral)
+# Loading work.caesar_cipher(behavioral)
+# Loading work.hill_cipher_combined(behavioral)
+# WARNING: No extended dataflow license exists
+add wave -position insertpoint sim:/cipher_combined_tb/*
+run -all
+quit -sim
+# End time: 01:56:16 on Dec 13,2024, Elapsed time: 0:03:28
+# Errors: 0, Warnings: 4
+# Compile of cipher_combined_tb.vhd was successful.
+vsim -gui work.cipher_combined_tb
+# vsim -gui work.cipher_combined_tb 
+# Start time: 01:56:27 on Dec 13,2024
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading ieee.std_logic_textio(body)
+# Loading work.cipher_combined_tb(behavior)
+# Loading work.cipher_combined(behavioral)
+# Loading work.caesar_cipher(behavioral)
+# Loading work.hill_cipher_combined(behavioral)
+# WARNING: No extended dataflow license exists
+add wave -position insertpoint sim:/cipher_combined_tb/*
+run -all
+quit -sim
+# End time: 02:00:51 on Dec 13,2024, Elapsed time: 0:04:24
+# Errors: 0, Warnings: 2
+# Compile of cipher_combined_tb.vhd was successful.
+vsim -gui work.cipher_combined_tb
+# vsim -gui work.cipher_combined_tb 
+# Start time: 02:00:59 on Dec 13,2024
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading ieee.std_logic_textio(body)
+# Loading work.cipher_combined_tb(behavior)
+# Loading work.cipher_combined(behavioral)
+# Loading work.caesar_cipher(behavioral)
+# Loading work.hill_cipher_combined(behavioral)
+# WARNING: No extended dataflow license exists
+add wave -position insertpoint sim:/cipher_combined_tb/*
+run -all
+quit -sim
+# End time: 02:27:35 on Dec 13,2024, Elapsed time: 0:26:36
+# Errors: 0, Warnings: 2
+# Compile of cipher_combined_tb.vhd failed with 4 errors.
+# Compile of cipher_combined_tb.vhd was successful.
+vsim -gui work.cipher_combined_tb
+# vsim -gui work.cipher_combined_tb 
+# Start time: 02:30:08 on Dec 13,2024
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading ieee.std_logic_textio(body)
+# Loading work.cipher_combined_tb(behavior)
+# Loading work.cipher_combined(behavioral)
+# Loading work.caesar_cipher(behavioral)
+# Loading work.hill_cipher_combined(behavioral)
+# WARNING: No extended dataflow license exists
+add wave -position insertpoint sim:/cipher_combined_tb/*
+run -all
+quit -sim
+# End time: 02:33:47 on Dec 13,2024, Elapsed time: 0:03:39
+# Errors: 0, Warnings: 3
+# Compile of cipher_combined_tb.vhd was successful.
+vsim -gui work.cipher_combined_tb
+# vsim -gui work.cipher_combined_tb 
+# Start time: 02:33:54 on Dec 13,2024
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading ieee.std_logic_textio(body)
+# Loading work.cipher_combined_tb(behavior)
+# Loading work.cipher_combined(behavioral)
+# Loading work.caesar_cipher(behavioral)
+# Loading work.hill_cipher_combined(behavioral)
+# WARNING: No extended dataflow license exists
+add wave -position insertpoint sim:/cipher_combined_tb/*
+run -all
+quit -sim
+# End time: 02:37:38 on Dec 13,2024, Elapsed time: 0:03:44
+# Errors: 0, Warnings: 2
+# Compile of cipher_combined_tb.vhd was successful.
+vsim -gui work.cipher_combined_tb
+# vsim -gui work.cipher_combined_tb 
+# Start time: 02:37:47 on Dec 13,2024
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading ieee.std_logic_textio(body)
+# Loading work.cipher_combined_tb(behavior)
+# Loading work.cipher_combined(behavioral)
+# Loading work.caesar_cipher(behavioral)
+# Loading work.hill_cipher_combined(behavioral)
+# WARNING: No extended dataflow license exists
+add wave -position insertpoint sim:/cipher_combined_tb/*
+run -all
+# Break key hit
+# Simulation stop requested.
+quit -sim
+# End time: 02:49:26 on Dec 13,2024, Elapsed time: 0:11:39
+# Errors: 0, Warnings: 2
+# Compile of cipher_combined_tb.vhd was successful.
+vsim -gui work.cipher_combined_tb
+# vsim -gui work.cipher_combined_tb 
+# Start time: 02:49:37 on Dec 13,2024
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading ieee.std_logic_textio(body)
+# Loading work.cipher_combined_tb(behavior)
+# Loading work.cipher_combined(behavioral)
+# Loading work.caesar_cipher(behavioral)
+# Loading work.hill_cipher_combined(behavioral)
+# WARNING: No extended dataflow license exists
+add wave -position insertpoint sim:/cipher_combined_tb/*
+run -all
+quit -sim
+# End time: 02:53:22 on Dec 13,2024, Elapsed time: 0:03:45
+# Errors: 0, Warnings: 2
+# Compile of cipher_combined_tb.vhd was successful.
+vsim -gui work.cipher_combined_tb
+# vsim -gui work.cipher_combined_tb 
+# Start time: 02:53:30 on Dec 13,2024
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading ieee.std_logic_textio(body)
+# Loading work.cipher_combined_tb(behavior)
+# Loading work.cipher_combined(behavioral)
+# Loading work.caesar_cipher(behavioral)
+# Loading work.hill_cipher_combined(behavioral)
+# WARNING: No extended dataflow license exists
+add wave -position insertpoint sim:/cipher_combined_tb/*
+run -all
+quit -sim
+# End time: 02:54:09 on Dec 13,2024, Elapsed time: 0:00:39
+# Errors: 0, Warnings: 2

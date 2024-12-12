@@ -8,7 +8,7 @@ entity cipher_combined_tb is
 end cipher_combined_tb;
 
 architecture behavior of cipher_combined_tb is
-    -- Component Declaration remains the same
+    -- Component Declaration
     component cipher_combined
         Port ( 
             clk : in STD_LOGIC;
@@ -22,7 +22,7 @@ architecture behavior of cipher_combined_tb is
         );
     end component;
 
-    -- Signals remain the same
+    -- Signals
     signal clk : STD_LOGIC := '0';
     signal reset : STD_LOGIC := '0';
     signal mode : STD_LOGIC_VECTOR(1 downto 0) := "00";
@@ -34,21 +34,23 @@ architecture behavior of cipher_combined_tb is
 
     constant CLK_PERIOD : time := 10 ns;
     
-    -- Add procedure for processing a single character
+    -- Procedure for processing a single character
     procedure process_lines(
         signal mode_sig : in STD_LOGIC_VECTOR(1 downto 0);
         signal start_sig : out STD_LOGIC;
         signal input_sig : out STD_LOGIC_VECTOR(7 downto 0);
         signal done_sig : in STD_LOGIC;
-        variable line_in, line_out : inout line;
+        signal output_sig : in STD_LOGIC_VECTOR(7 downto 0);
         file input_file, output_file : TEXT;
         signal clk_sig : in STD_LOGIC;
         constant start_line : in integer;
         constant end_line : in integer) is
         
+        variable line_in, line_out : line;
         variable char_in : character;
         variable current_line : integer := 1;
         variable temp_line : line;
+        variable result : STD_LOGIC_VECTOR(7 downto 0);  -- New variable for storing result
     begin
         -- Skip to start_line
         while current_line < start_line loop
@@ -61,10 +63,9 @@ architecture behavior of cipher_combined_tb is
         -- Process lines in range
         while current_line <= end_line and not endfile(input_file) loop
             readline(input_file, line_in);
-            if line_in.all'length > 0 then  -- Skip empty lines
+            if line_in.all'length > 0 then
                 read(line_in, char_in);
                 
-                -- Process character
                 input_sig <= std_logic_vector(to_unsigned(character'pos(char_in), 8));
                 wait until rising_edge(clk_sig);
                 
@@ -73,19 +74,29 @@ architecture behavior of cipher_combined_tb is
                 start_sig <= '0';
                 
                 if mode_sig = "00" or mode_sig = "01" then
+                    -- Wait for done signal
                     wait until done_sig = '1';
+                    -- Wait 2 clock cycles after done goes high
                     wait until rising_edge(clk_sig);
+                    wait until rising_edge(clk_sig);
+                    -- Capture output after 2 cycles
+                    result := output_sig;
+                    write(line_out, character'val(to_integer(unsigned(result))));
+                    writeline(output_file, line_out);
                 else
+                    -- Wait for done to go high then low
                     wait until done_sig = '1';
                     wait until done_sig = '0';
+                    -- Wait 2 clock cycles after done goes low
                     wait until rising_edge(clk_sig);
+                    wait until rising_edge(clk_sig);
+                    -- Capture output after 2 cycles
+                    result := output_sig;
+                    write(line_out, character'val(to_integer(unsigned(result))));
+                    writeline(output_file, line_out);
                 end if;
                 
-                -- Write output
-                write(line_out, character'val(to_integer(unsigned(output_char))));
-                writeline(output_file, line_out);
-                
-                -- Wait for IDLE state
+                -- Wait for IDLE state before next input
                 wait until rising_edge(clk_sig);
                 wait until rising_edge(clk_sig);
             end if;
@@ -94,7 +105,7 @@ architecture behavior of cipher_combined_tb is
     end procedure;
 
 begin
-    -- Component instantiation remains the same
+    -- Component instantiation
     uut: cipher_combined port map (
         clk => clk,
         reset => reset,
@@ -106,7 +117,7 @@ begin
         done => done
     );
 
-    -- Clock process remains the same
+    -- Clock process
     clk_process: process
     begin
         clk <= '0';
@@ -117,7 +128,7 @@ begin
 
     -- Main test process
     stim_proc: process
-        variable line_in, line_out : line;
+        variable line_out : line;
         file input_file : text;
         file output_file : text;
     begin
@@ -135,8 +146,7 @@ begin
         mode <= "00";
         write(line_out, string'("Mode 00 - Case 1 Encrypt:"));
         writeline(output_file, line_out);
-        process_lines(mode, start, input_char, done, line_in, line_out, 
-                     input_file, output_file, clk, 1, 5);
+        process_lines(mode, start, input_char, done, output_char, input_file, output_file, clk, 1, 5);
         
         -- Reset file for next mode
         file_close(input_file);
@@ -146,8 +156,7 @@ begin
         mode <= "01";
         write(line_out, string'("Mode 01 - Case 1 Decrypt:"));
         writeline(output_file, line_out);
-        process_lines(mode, start, input_char, done, line_in, line_out, 
-                     input_file, output_file, clk, 7, 11);
+        process_lines(mode, start, input_char, done, output_char, input_file, output_file, clk, 7, 11);
 
         -- Reset file for next mode
         file_close(input_file);
@@ -157,8 +166,7 @@ begin
         mode <= "10";
         write(line_out, string'("Mode 10 - Case 2 Encrypt:"));
         writeline(output_file, line_out);
-        process_lines(mode, start, input_char, done, line_in, line_out, 
-                     input_file, output_file, clk, 13, 17);
+        process_lines(mode, start, input_char, done, output_char, input_file, output_file, clk, 13, 18);
 
         -- Reset file for next mode
         file_close(input_file);
@@ -168,8 +176,7 @@ begin
         mode <= "11";
         write(line_out, string'("Mode 11 - Case 2 Decrypt:"));
         writeline(output_file, line_out);
-        process_lines(mode, start, input_char, done, line_in, line_out, 
-                     input_file, output_file, clk, 19, 23);
+        process_lines(mode, start, input_char, done, output_char, input_file, output_file, clk, 19, 23);
 
         -- Close files
         file_close(input_file);
