@@ -15,8 +15,6 @@ end hill_cipher_combined;
 architecture Behavioral of hill_cipher_combined is
     -- Matriks kunci 2x2 untuk enkripsi
     constant ENCRYPT_KEY_MATRIX : STD_LOGIC_VECTOR(15 downto 0) := x"0305"; 
-    -- [0  3]
-    -- [0  5]
 
     -- Matriks kunci 2x2 untuk dekripsi
     constant DECRYPT_KEY_MATRIX : STD_LOGIC_VECTOR(15 downto 0) := x"0917"; 

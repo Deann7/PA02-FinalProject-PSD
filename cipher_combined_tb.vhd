@@ -1,42 +1,100 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
-use STD.TEXTIO.ALL;
 use IEEE.STD_LOGIC_TEXTIO.ALL;
+use STD.TEXTIO.ALL;
 
 entity cipher_combined_tb is
 end cipher_combined_tb;
 
 architecture behavior of cipher_combined_tb is
+    -- Component Declaration remains the same
     component cipher_combined
-        port (
-            clk         : in std_logic;
-            reset       : in std_logic;
-            mode        : in std_logic_vector(1 downto 0);
-            start       : in std_logic;
-            shift_value : in std_logic_vector(4 downto 0);
-            input_char  : in std_logic_vector(7 downto 0);
-            output_char : out std_logic_vector(7 downto 0);
-            done        : out std_logic
+        Port ( 
+            clk : in STD_LOGIC;
+            reset : in STD_LOGIC;
+            mode : in STD_LOGIC_VECTOR(1 downto 0);
+            start : in STD_LOGIC;
+            shift_value : in STD_LOGIC_VECTOR(4 downto 0);
+            input_char : in STD_LOGIC_VECTOR(7 downto 0);
+            output_char : out STD_LOGIC_VECTOR(7 downto 0);
+            done : out STD_LOGIC
         );
     end component;
 
-    -- Test signals
-    signal clk         : std_logic := '0';
-    signal reset       : std_logic := '1';
-    signal mode        : std_logic_vector(1 downto 0) := "00";
-    signal start       : std_logic := '0';
-    signal shift_value : std_logic_vector(4 downto 0) := "00011";
-    signal input_char  : std_logic_vector(7 downto 0) := (others => '0');
-    signal output_char : std_logic_vector(7 downto 0);
-    signal done        : std_logic;
-    signal stored_enc  : std_logic_vector(7 downto 0);
+    -- Signals remain the same
+    signal clk : STD_LOGIC := '0';
+    signal reset : STD_LOGIC := '0';
+    signal mode : STD_LOGIC_VECTOR(1 downto 0) := "00";
+    signal start : STD_LOGIC := '0';
+    signal shift_value : STD_LOGIC_VECTOR(4 downto 0) := "00011";
+    signal input_char : STD_LOGIC_VECTOR(7 downto 0) := (others => '0');
+    signal output_char : STD_LOGIC_VECTOR(7 downto 0);
+    signal done : STD_LOGIC;
+
+    constant CLK_PERIOD : time := 10 ns;
     
-    constant clk_period : time := 10 ns;
-    constant wait_time  : time := 50 ns;
+    -- Add procedure for processing a single character
+    procedure process_lines(
+        signal mode_sig : in STD_LOGIC_VECTOR(1 downto 0);
+        signal start_sig : out STD_LOGIC;
+        signal input_sig : out STD_LOGIC_VECTOR(7 downto 0);
+        signal done_sig : in STD_LOGIC;
+        variable line_in, line_out : inout line;
+        file input_file, output_file : TEXT;
+        signal clk_sig : in STD_LOGIC;
+        constant start_line : in integer;
+        constant end_line : in integer) is
+        
+        variable char_in : character;
+        variable current_line : integer := 1;
+        variable temp_line : line;
+    begin
+        -- Skip to start_line
+        while current_line < start_line loop
+            if not endfile(input_file) then
+                readline(input_file, temp_line);
+                current_line := current_line + 1;
+            end if;
+        end loop;
+        
+        -- Process lines in range
+        while current_line <= end_line and not endfile(input_file) loop
+            readline(input_file, line_in);
+            if line_in.all'length > 0 then  -- Skip empty lines
+                read(line_in, char_in);
+                
+                -- Process character
+                input_sig <= std_logic_vector(to_unsigned(character'pos(char_in), 8));
+                wait until rising_edge(clk_sig);
+                
+                start_sig <= '1';
+                wait until rising_edge(clk_sig);
+                start_sig <= '0';
+                
+                if mode_sig = "00" or mode_sig = "01" then
+                    wait until done_sig = '1';
+                    wait until rising_edge(clk_sig);
+                else
+                    wait until done_sig = '1';
+                    wait until done_sig = '0';
+                    wait until rising_edge(clk_sig);
+                end if;
+                
+                -- Write output
+                write(line_out, character'val(to_integer(unsigned(output_char))));
+                writeline(output_file, line_out);
+                
+                -- Wait for IDLE state
+                wait until rising_edge(clk_sig);
+                wait until rising_edge(clk_sig);
+            end if;
+            current_line := current_line + 1;
+        end loop;
+    end procedure;
 
 begin
-    -- UUT instantiation
+    -- Component instantiation remains the same
     uut: cipher_combined port map (
         clk => clk,
         reset => reset,
@@ -48,87 +106,75 @@ begin
         done => done
     );
 
-    -- Clock process
+    -- Clock process remains the same
     clk_process: process
     begin
         clk <= '0';
-        wait for clk_period/2;
+        wait for CLK_PERIOD/2;
         clk <= '1';
-        wait for clk_period/2;
+        wait for CLK_PERIOD/2;
     end process;
 
-    -- Store output process
-    store_proc: process(clk)
-    begin
-        if rising_edge(clk) then
-            if done = '1' then
-                stored_enc <= output_char;
-            end if;
-        end if;
-    end process;
-
-    -- Stimulus process
+    -- Main test process
     stim_proc: process
-        procedure process_char(
-            input_val : in std_logic_vector(7 downto 0);
-            mode_val : in std_logic_vector(1 downto 0)) is
-        begin
-            mode <= mode_val;
-            start <= '1';
-            input_char <= input_val;
-            wait for clk_period;
-            start <= '0';
-            wait until done = '1';
-            wait for clk_period;
-            wait for wait_time;
-        end procedure;
+        variable line_in, line_out : line;
+        file input_file : text;
+        file output_file : text;
     begin
-        -- Initial reset
+        -- Initialize files
+        file_open(input_file, "input_text.txt", read_mode);
+        file_open(output_file, "output_text.txt", write_mode);
+
+        -- Reset sequence
         reset <= '1';
-        wait for clk_period * 2;
+        wait for CLK_PERIOD;
         reset <= '0';
-        wait for clk_period * 2;
+        wait for CLK_PERIOD;
 
-        -- Test uppercase letters
-        -- Encrypt 'A'
-        process_char(x"41", "00");  -- Caesar -> Hill encryption
-        process_char(stored_enc, "01");  -- Hill -> Caesar decryption
+        -- Mode 00 (Case 1 Encrypt) - Lines 1-5
+        mode <= "00";
+        write(line_out, string'("Mode 00 - Case 1 Encrypt:"));
+        writeline(output_file, line_out);
+        process_lines(mode, start, input_char, done, line_in, line_out, 
+                     input_file, output_file, clk, 1, 5);
+        
+        -- Reset file for next mode
+        file_close(input_file);
+        file_open(input_file, "input_text.txt", read_mode);
 
-        -- Test lowercase letters
-        -- Encrypt 'a'
-        process_char(x"61", "00");  -- Caesar -> Hill encryption
-        process_char(stored_enc, "01");  -- Hill -> Caesar decryption
+        -- Mode 01 (Case 1 Decrypt) - Lines 7-11
+        mode <= "01";
+        write(line_out, string'("Mode 01 - Case 1 Decrypt:"));
+        writeline(output_file, line_out);
+        process_lines(mode, start, input_char, done, line_in, line_out, 
+                     input_file, output_file, clk, 7, 11);
 
-        -- Test Case 2 encryption/decryption
-        -- Encrypt 'B'
-        process_char(x"42", "10");  -- Hill -> Caesar encryption
-        process_char(stored_enc, "11");  -- Caesar -> Hill decryption
+        -- Reset file for next mode
+        file_close(input_file);
+        file_open(input_file, "input_text.txt", read_mode);
 
-        -- Test special characters
-        -- Space character
-        process_char(x"20", "00");  -- Caesar -> Hill encryption
-        process_char(stored_enc, "01");  -- Hill -> Caesar decryption
+        -- Mode 10 (Case 2 Encrypt) - Lines 13-17
+        mode <= "10";
+        write(line_out, string'("Mode 10 - Case 2 Encrypt:"));
+        writeline(output_file, line_out);
+        process_lines(mode, start, input_char, done, line_in, line_out, 
+                     input_file, output_file, clk, 13, 17);
 
+        -- Reset file for next mode
+        file_close(input_file);
+        file_open(input_file, "input_text.txt", read_mode);
+
+        -- Mode 11 (Case 2 Decrypt) - Lines 19-23
+        mode <= "11";
+        write(line_out, string'("Mode 11 - Case 2 Decrypt:"));
+        writeline(output_file, line_out);
+        process_lines(mode, start, input_char, done, line_in, line_out, 
+                     input_file, output_file, clk, 19, 23);
+
+        -- Close files
+        file_close(input_file);
+        file_close(output_file);
+        
         wait;
     end process;
-
-    -- Monitor process
-    monitor_proc: process(clk)
-        variable msg : line;
-    begin
-        if rising_edge(clk) then
-            if done = '1' then
-                write(msg, string'("Mode: "));
-                hwrite(msg, mode);
-                write(msg, string'(" Input: "));
-                hwrite(msg, input_char);
-                write(msg, string'(" Output: "));
-                hwrite(msg, output_char);
-                write(msg, string'(" Stored: "));
-                hwrite(msg, stored_enc);
-                writeline(output, msg);
-            end if;
-        end if;
-    end process;
-
 end behavior;
