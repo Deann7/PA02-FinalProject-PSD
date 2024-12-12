@@ -33,76 +33,6 @@ architecture behavior of cipher_combined_tb is
     signal done : STD_LOGIC;
 
     constant CLK_PERIOD : time := 10 ns;
-    
-    -- Procedure for processing a single character
-    procedure process_lines(
-        signal mode_sig : in STD_LOGIC_VECTOR(1 downto 0);
-        signal start_sig : out STD_LOGIC;
-        signal input_sig : out STD_LOGIC_VECTOR(7 downto 0);
-        signal done_sig : in STD_LOGIC;
-        signal output_sig : in STD_LOGIC_VECTOR(7 downto 0);
-        file input_file, output_file : TEXT;
-        signal clk_sig : in STD_LOGIC;
-        constant start_line : in integer;
-        constant end_line : in integer) is
-        
-        variable line_in, line_out : line;
-        variable char_in : character;
-        variable current_line : integer := 1;
-        variable temp_line : line;
-        variable result : STD_LOGIC_VECTOR(7 downto 0);  -- New variable for storing result
-    begin
-        -- Skip to start_line
-        while current_line < start_line loop
-            if not endfile(input_file) then
-                readline(input_file, temp_line);
-                current_line := current_line + 1;
-            end if;
-        end loop;
-        
-        -- Process lines in range
-        while current_line <= end_line and not endfile(input_file) loop
-            readline(input_file, line_in);
-            if line_in.all'length > 0 then
-                read(line_in, char_in);
-                
-                input_sig <= std_logic_vector(to_unsigned(character'pos(char_in), 8));
-                wait until rising_edge(clk_sig);
-                
-                start_sig <= '1';
-                wait until rising_edge(clk_sig);
-                start_sig <= '0';
-                
-                if mode_sig = "00" or mode_sig = "01" then
-                    -- Wait for done signal
-                    wait until done_sig = '1';
-                    -- Wait 2 clock cycles after done goes high
-                    wait until rising_edge(clk_sig);
-                    wait until rising_edge(clk_sig);
-                    -- Capture output after 2 cycles
-                    result := output_sig;
-                    write(line_out, character'val(to_integer(unsigned(result))));
-                    writeline(output_file, line_out);
-                else
-                    -- Wait for done to go high then low
-                    wait until done_sig = '1';
-                    wait until done_sig = '0';
-                    -- Wait 2 clock cycles after done goes low
-                    wait until rising_edge(clk_sig);
-                    wait until rising_edge(clk_sig);
-                    -- Capture output after 2 cycles
-                    result := output_sig;
-                    write(line_out, character'val(to_integer(unsigned(result))));
-                    writeline(output_file, line_out);
-                end if;
-                
-                -- Wait for IDLE state before next input
-                wait until rising_edge(clk_sig);
-                wait until rising_edge(clk_sig);
-            end if;
-            current_line := current_line + 1;
-        end loop;
-    end procedure;
 
 begin
     -- Component instantiation
@@ -128,13 +58,19 @@ begin
 
     -- Main test process
     stim_proc: process
-        variable line_out : line;
         file input_file : text;
         file output_file : text;
+        file temp_file : text;
+        variable line_in, line_out : line;
+        variable char_in : character;
+        variable result : STD_LOGIC_VECTOR(7 downto 0);
+        variable temp_char : character;
+        variable line_count : integer := 0;
     begin
         -- Initialize files
         file_open(input_file, "input_text.txt", read_mode);
         file_open(output_file, "output_text.txt", write_mode);
+        file_open(temp_file, "temp.txt", write_mode);
 
         -- Reset sequence
         reset <= '1';
@@ -142,45 +78,147 @@ begin
         reset <= '0';
         wait for CLK_PERIOD;
 
-        -- Mode 00 (Case 1 Encrypt) - Lines 1-5
+        -- Mode 00 - Process first string until blank line
         mode <= "00";
         write(line_out, string'("Mode 00 - Case 1 Encrypt:"));
         writeline(output_file, line_out);
-        process_lines(mode, start, input_char, done, output_char, input_file, output_file, clk, 1, 5);
         
-        -- Reset file for next mode
-        file_close(input_file);
-        file_open(input_file, "input_text.txt", read_mode);
+        while not endfile(input_file) loop
+            readline(input_file, line_in);
+            if line_in.all'length = 0 then
+                exit;
+            end if;
+            read(line_in, char_in);
+            
+            -- Process character
+            input_char <= std_logic_vector(to_unsigned(character'pos(char_in), 8));
+            wait until rising_edge(clk);
+            start <= '1';
+            wait until rising_edge(clk);
+            start <= '0';
+            
+            -- Wait for done and capture output
+            wait until done = '1';
+            wait until rising_edge(clk);
+            wait until rising_edge(clk);
+            result := output_char;
+            
+            -- Write to both output and temp files
+            write(line_out, character'val(to_integer(unsigned(result))));
+            writeline(output_file, line_out);
+            write(line_out, character'val(to_integer(unsigned(result))));
+            writeline(temp_file, line_out);
+            
+            line_count := line_count + 1;
+            
+            wait until rising_edge(clk);
+            wait until rising_edge(clk);
+        end loop;
 
-        -- Mode 01 (Case 1 Decrypt) - Lines 7-11
+        -- Mode 01 - Read from temp file
+        file_close(temp_file);
+        file_open(temp_file, "temp.txt", read_mode);
+        
         mode <= "01";
         write(line_out, string'("Mode 01 - Case 1 Decrypt:"));
         writeline(output_file, line_out);
-        process_lines(mode, start, input_char, done, output_char, input_file, output_file, clk, 7, 11);
+        
+        for i in 1 to line_count loop
+            readline(temp_file, line_in);
+            read(line_in, char_in);
+            
+            input_char <= std_logic_vector(to_unsigned(character'pos(char_in), 8));
+            wait until rising_edge(clk);
+            start <= '1';
+            wait until rising_edge(clk);
+            start <= '0';
+            
+            wait until done = '1';
+            wait until rising_edge(clk);
+            wait until rising_edge(clk);
+            result := output_char;
+            
+            write(line_out, character'val(to_integer(unsigned(result))));
+            writeline(output_file, line_out);
+            
+            wait until rising_edge(clk);
+            wait until rising_edge(clk);
+        end loop;
 
-        -- Reset file for next mode
-        file_close(input_file);
-        file_open(input_file, "input_text.txt", read_mode);
-
-        -- Mode 10 (Case 2 Encrypt) - Lines 13-17
+        -- Mode 10 - Process second string until blank line
+        line_count := 0;
+        file_close(temp_file);
+        file_open(temp_file, "temp.txt", write_mode);
+        
         mode <= "10";
         write(line_out, string'("Mode 10 - Case 2 Encrypt:"));
         writeline(output_file, line_out);
-        process_lines(mode, start, input_char, done, output_char, input_file, output_file, clk, 13, 18);
+        
+        while not endfile(input_file) loop
+            readline(input_file, line_in);
+            if line_in.all'length = 0 then
+                exit;
+            end if;
+            read(line_in, char_in);
+            
+            input_char <= std_logic_vector(to_unsigned(character'pos(char_in), 8));
+            wait until rising_edge(clk);
+            start <= '1';
+            wait until rising_edge(clk);
+            start <= '0';
+            
+            wait until done = '1';
+            wait until done = '0';
+            wait until rising_edge(clk);
+            wait until rising_edge(clk);
+            result := output_char;
+            
+            write(line_out, character'val(to_integer(unsigned(result))));
+            writeline(output_file, line_out);
+            write(line_out, character'val(to_integer(unsigned(result))));
+            writeline(temp_file, line_out);
+            
+            line_count := line_count + 1;
+            
+            wait until rising_edge(clk);
+            wait until rising_edge(clk);
+        end loop;
 
-        -- Reset file for next mode
-        file_close(input_file);
-        file_open(input_file, "input_text.txt", read_mode);
-
-        -- Mode 11 (Case 2 Decrypt) - Lines 19-23
+        -- Mode 11 - Read from temp file
+        file_close(temp_file);
+        file_open(temp_file, "temp.txt", read_mode);
+        
         mode <= "11";
         write(line_out, string'("Mode 11 - Case 2 Decrypt:"));
         writeline(output_file, line_out);
-        process_lines(mode, start, input_char, done, output_char, input_file, output_file, clk, 19, 23);
+        
+        for i in 1 to line_count loop
+            readline(temp_file, line_in);
+            read(line_in, char_in);
+            
+            input_char <= std_logic_vector(to_unsigned(character'pos(char_in), 8));
+            wait until rising_edge(clk);
+            start <= '1';
+            wait until rising_edge(clk);
+            start <= '0';
+            
+            wait until done = '1';
+            wait until done = '0';
+            wait until rising_edge(clk);
+            wait until rising_edge(clk);
+            result := output_char;
+            
+            write(line_out, character'val(to_integer(unsigned(result))));
+            writeline(output_file, line_out);
+            
+            wait until rising_edge(clk);
+            wait until rising_edge(clk);
+        end loop;
 
         -- Close files
         file_close(input_file);
         file_close(output_file);
+        file_close(temp_file);
         
         wait;
     end process;

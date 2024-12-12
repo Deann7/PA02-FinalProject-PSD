@@ -1,24 +1,22 @@
 Mode 00 - Case 1 Encrypt:
-E
+D
 V
-Q
-Q
-Z
+L
 Mode 01 - Case 1 Decrypt:
-H
+Y
 E
-L
-L
-O
+S
 Mode 10 - Case 2 Encrypt:
 Y
 P
 K
 K
 T
+R
 Mode 11 - Case 2 Decrypt:
 H
 E
 L
 L
 O
+W

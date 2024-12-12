@@ -318,3 +318,20 @@ run -all
 quit -sim
 # End time: 02:54:09 on Dec 13,2024, Elapsed time: 0:00:39
 # Errors: 0, Warnings: 2
+# Compile of cipher_combined_tb.vhd failed with 3 errors.
+# Compile of cipher_combined_tb.vhd was successful.
+vsim -gui work.cipher_combined_tb
+# vsim -gui work.cipher_combined_tb 
+# Start time: 03:09:32 on Dec 13,2024
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading ieee.std_logic_textio(body)
+# Loading work.cipher_combined_tb(behavior)
+# Loading work.cipher_combined(behavioral)
+# Loading work.caesar_cipher(behavioral)
+# Loading work.hill_cipher_combined(behavioral)
+# WARNING: No extended dataflow license exists
+add wave -position insertpoint sim:/cipher_combined_tb/*
+run -all
