@@ -1,10 +1,3 @@
-Y
-E
-S
+YES
 
-H
-E
-L
-L
-O
-W
+WORLD

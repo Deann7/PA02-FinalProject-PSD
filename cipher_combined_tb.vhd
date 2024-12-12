@@ -8,7 +8,6 @@ entity cipher_combined_tb is
 end cipher_combined_tb;
 
 architecture behavior of cipher_combined_tb is
-    -- Component Declaration
     component cipher_combined
         Port ( 
             clk : in STD_LOGIC;
@@ -62,10 +61,10 @@ begin
         file output_file : text;
         file temp_file : text;
         variable line_in, line_out : line;
+        variable result_str : string(1 to 80);  -- Buffer for result string
+        variable str_len : integer := 0;
         variable char_in : character;
-        variable result : STD_LOGIC_VECTOR(7 downto 0);
-        variable temp_char : character;
-        variable line_count : integer := 0;
+        variable result : std_logic_vector(7 downto 0);
     begin
         -- Initialize files
         file_open(input_file, "input_text.txt", read_mode);
@@ -78,53 +77,56 @@ begin
         reset <= '0';
         wait for CLK_PERIOD;
 
-        -- Mode 00 - Process first string until blank line
+        -- Mode 00 - Process first word
         mode <= "00";
         write(line_out, string'("Mode 00 - Case 1 Encrypt:"));
         writeline(output_file, line_out);
         
-        while not endfile(input_file) loop
-            readline(input_file, line_in);
-            if line_in.all'length = 0 then
-                exit;
-            end if;
+        -- Read and process first word
+        readline(input_file, line_in);
+        str_len := 0;
+        
+        -- Process each character in the word
+        for i in 1 to line_in'length loop
             read(line_in, char_in);
             
-            -- Process character
             input_char <= std_logic_vector(to_unsigned(character'pos(char_in), 8));
             wait until rising_edge(clk);
             start <= '1';
             wait until rising_edge(clk);
             start <= '0';
             
-            -- Wait for done and capture output
             wait until done = '1';
             wait until rising_edge(clk);
             wait until rising_edge(clk);
-            result := output_char;
             
-            -- Write to both output and temp files
-            write(line_out, character'val(to_integer(unsigned(result))));
-            writeline(output_file, line_out);
-            write(line_out, character'val(to_integer(unsigned(result))));
-            writeline(temp_file, line_out);
-            
-            line_count := line_count + 1;
+            -- Store encrypted character
+            str_len := str_len + 1;
+            result_str(str_len) := character'val(to_integer(unsigned(output_char)));
             
             wait until rising_edge(clk);
             wait until rising_edge(clk);
         end loop;
-
-        -- Mode 01 - Read from temp file
-        file_close(temp_file);
-        file_open(temp_file, "temp.txt", read_mode);
         
+        -- Write complete encrypted word
+        write(line_out, result_str(1 to str_len));
+        writeline(output_file, line_out);
+        write(line_out, result_str(1 to str_len));  -- Also write to temp file
+        writeline(temp_file, line_out);
+
+        -- Mode 01 - Decrypt first word
         mode <= "01";
         write(line_out, string'("Mode 01 - Case 1 Decrypt:"));
         writeline(output_file, line_out);
         
-        for i in 1 to line_count loop
-            readline(temp_file, line_in);
+        -- Read encrypted word from temp file
+        file_close(temp_file);
+        file_open(temp_file, "temp.txt", read_mode);
+        readline(temp_file, line_in);
+        str_len := 0;
+        
+        -- Process each character
+        for i in 1 to line_in'length loop
             read(line_in, char_in);
             
             input_char <= std_logic_vector(to_unsigned(character'pos(char_in), 8));
@@ -136,17 +138,23 @@ begin
             wait until done = '1';
             wait until rising_edge(clk);
             wait until rising_edge(clk);
-            result := output_char;
             
-            write(line_out, character'val(to_integer(unsigned(result))));
-            writeline(output_file, line_out);
+            -- Store decrypted character
+            str_len := str_len + 1;
+            result_str(str_len) := character'val(to_integer(unsigned(output_char)));
             
             wait until rising_edge(clk);
             wait until rising_edge(clk);
         end loop;
+        
+        -- Write complete decrypted word
+        write(line_out, result_str(1 to str_len));
+        writeline(output_file, line_out);
 
-        -- Mode 10 - Process second string until blank line
-        line_count := 0;
+        -- Skip blank line in input file
+        readline(input_file, line_in);
+        
+        -- Mode 10 - Process second word
         file_close(temp_file);
         file_open(temp_file, "temp.txt", write_mode);
         
@@ -154,11 +162,12 @@ begin
         write(line_out, string'("Mode 10 - Case 2 Encrypt:"));
         writeline(output_file, line_out);
         
-        while not endfile(input_file) loop
-            readline(input_file, line_in);
-            if line_in.all'length = 0 then
-                exit;
-            end if;
+        -- Read and process second word
+        readline(input_file, line_in);
+        str_len := 0;
+        
+        -- Process each character
+        for i in 1 to line_in'length loop
             read(line_in, char_in);
             
             input_char <= std_logic_vector(to_unsigned(character'pos(char_in), 8));
@@ -171,29 +180,34 @@ begin
             wait until done = '0';
             wait until rising_edge(clk);
             wait until rising_edge(clk);
-            result := output_char;
             
-            write(line_out, character'val(to_integer(unsigned(result))));
-            writeline(output_file, line_out);
-            write(line_out, character'val(to_integer(unsigned(result))));
-            writeline(temp_file, line_out);
-            
-            line_count := line_count + 1;
+            -- Store encrypted character
+            str_len := str_len + 1;
+            result_str(str_len) := character'val(to_integer(unsigned(output_char)));
             
             wait until rising_edge(clk);
             wait until rising_edge(clk);
         end loop;
-
-        -- Mode 11 - Read from temp file
-        file_close(temp_file);
-        file_open(temp_file, "temp.txt", read_mode);
         
+        -- Write complete encrypted word
+        write(line_out, result_str(1 to str_len));
+        writeline(output_file, line_out);
+        write(line_out, result_str(1 to str_len));  -- Also write to temp file
+        writeline(temp_file, line_out);
+
+        -- Mode 11 - Decrypt second word
         mode <= "11";
         write(line_out, string'("Mode 11 - Case 2 Decrypt:"));
         writeline(output_file, line_out);
         
-        for i in 1 to line_count loop
-            readline(temp_file, line_in);
+        -- Read encrypted word from temp file
+        file_close(temp_file);
+        file_open(temp_file, "temp.txt", read_mode);
+        readline(temp_file, line_in);
+        str_len := 0;
+        
+        -- Process each character
+        for i in 1 to line_in'length loop
             read(line_in, char_in);
             
             input_char <= std_logic_vector(to_unsigned(character'pos(char_in), 8));
@@ -206,14 +220,18 @@ begin
             wait until done = '0';
             wait until rising_edge(clk);
             wait until rising_edge(clk);
-            result := output_char;
             
-            write(line_out, character'val(to_integer(unsigned(result))));
-            writeline(output_file, line_out);
+            -- Store decrypted character
+            str_len := str_len + 1;
+            result_str(str_len) := character'val(to_integer(unsigned(output_char)));
             
             wait until rising_edge(clk);
             wait until rising_edge(clk);
         end loop;
+        
+        -- Write complete decrypted word
+        write(line_out, result_str(1 to str_len));
+        writeline(output_file, line_out);
 
         -- Close files
         file_close(input_file);

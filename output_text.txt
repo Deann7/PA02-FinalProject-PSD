@@ -1,22 +1,8 @@
 Mode 00 - Case 1 Encrypt:
-D
-V
-L
+DVL
 Mode 01 - Case 1 Decrypt:
-Y
-E
-S
+YES
 Mode 10 - Case 2 Encrypt:
-Y
-P
-K
-K
-T
-R
+RTCKM
 Mode 11 - Case 2 Decrypt:
-H
-E
-L
-L
-O
-W
+WORLD
